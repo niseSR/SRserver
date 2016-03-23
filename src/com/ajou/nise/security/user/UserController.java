@@ -30,10 +30,9 @@ import com.hp.hpl.jena.ontology.OntModelSpec;
 
 import java.io.*;
 
-
 import com.ajou.nise.security.common.RequestParameter;
 import com.ajou.nise.security.common.Utils;
-import com.ajou.nise.security.user.User;
+import com.ajou.nise.security.model.User;
 import com.ajou.nise.security.user.UserServiceImpl;
 
 @Controller
@@ -41,14 +40,164 @@ public class UserController {
 	
 	@Resource(name = "userService")
 	private UserServiceImpl userService;
+
+	@RequestMapping("/user/user_checkUniqueId.do")
+	public ModelAndView user_checkUniqueId(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		RequestParameter rp = Utils.extractRequestParameters(req);	
+		ModelAndView mnv = new ModelAndView("/common/json_result");
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		System.out.println("-------------user_checkUniqueId--------------");
+		System.out.println("rp = " + rp);
+
+		String currentId = rp.get("userID").toString();
+		System.out.println("userID= "+ currentId);
+		
+		if(this.userService.getObjectForIdcheck(rp) == null)
+		{
+			System.out.println("동일 ID 없음");
+			map.put("success", "동일 ID 없음");
+		
+		}else
+		{
+			System.out.println("동일 ID 있음");
+			map.put("fail", "동일 ID 있음");		
+		}
+		
+		mnv.addObject("map", map);
+		mnv.addObject("callback", req.getParameter("callback"));
+		
+		return mnv;
+	}
+
+	@RequestMapping("/user/user_checkUniqueCompany.do")
+	public ModelAndView user_checkUniqueCompany(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		RequestParameter rp = Utils.extractRequestParameters(req);	
+		ModelAndView mnv = new ModelAndView("/common/json_result");
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		System.out.println("-------------user_checkUniqueCompany--------------");
+		System.out.println("rp = " + rp);
+
+		System.out.println("userCompany = "+ rp.get("userCompany").toString());
+		
+		if(this.userService.getObjectForCompanyCheck(rp) == null)
+		{
+			System.out.println("동일 회사 이름 없음");
+			map.put("success", "동일 회사 이름 없음");
+		
+		}else
+		{
+			System.out.println("동일 회사 이름 있음");
+			map.put("fail", "동일 회사 이름 있음");		
+		}
+		
+		mnv.addObject("map", map);
+		mnv.addObject("callback", req.getParameter("callback"));
+		
+		return mnv;
+	}
 	
-	@Resource(name = "shaEncoder")
-	private ShaEncoder encoder;
+	@RequestMapping("/user/user_registration.do")
+	public ModelAndView userRegistration(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		RequestParameter rp = Utils.extractRequestParameters(req);	
+		ModelAndView mnv = new ModelAndView("/common/json_result");
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		User user = new User();
+
+		user.setUserID(rp.get("userID").toString());
+		user.setUserPassword(rp.get("userPassword").toString());
+		user.setUserName(rp.get("userName").toString());
+		user.setUserCompany(rp.get("userCompany").toString());
+
+		userService.insertUserInfo(user);
+		
+		if(user !=null)	map.put("success", "회원등록 성공");
+		else map.put("fail", "회원등록 실패");
+
+		mnv.addObject("map", map);
+		mnv.addObject("callback", req.getParameter("callback"));
+		return mnv;
+	}
+
+	@RequestMapping("/user/user_login.do")
+	public ModelAndView login(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		RequestParameter rp = Utils.extractRequestParameters(req);	
+		ModelAndView mnv = new ModelAndView("/common/json_result");
+		System.out.println("rp = "+ rp);
+		Map<String, Object> map = new HashMap<String, Object>();
+		Map<String, Object> userMap = new HashMap<String, Object>();
+		
+		User user = (User) this.userService.login(rp);
+		
+		if(user != null){
+			userMap.put("userNumSeq", user.getUserNumSeq());
+			userMap.put("userName", user.getUserName());
+			userMap.put("userCompany", user.getUserCompany());
+			map.put("success", userMap);
+		}else{
+			map.put("fail", "로그인 실패");
+		}
+		mnv.addObject("map", map);
+		mnv.addObject("callback", req.getParameter("callback"));
+		return mnv;
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	/* 테스트 1차 : import 시켜서 rdf 모델이 정상적으로 동작하는지 확인
 	 * 결과 : 테스트 이상없으며, 대신 import시켜야하는 라이브러리는 Web App Libraries 안에 무조건 넣어야 함.
 	 */ 	
- 
+
 	@RequestMapping("/test/test_jena1.do")
 	public ModelAndView test_jena1(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		RequestParameter rp = Utils.extractRequestParameters(req);	

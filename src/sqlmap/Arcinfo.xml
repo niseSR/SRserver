@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.ajou.nise.security.arcinfo">
+
+	<typeAlias alias ="RequestParameter" type="com.ajou.nise.security.common.RequestParameter"/>		
+	<typeAlias alias="user" type="com.ajou.nise.security.model.User"/>
+	<typeAlias alias="relatedsh" type="com.ajou.nise.security.model.Relatedsh"/>
+	
+	<resultMap class="user" id="userResult">
+		<result property="userNumSeq" column="USER_NUMSEQ"/>
+		<result property="userID" column="USER_ID"/>
+		<result property="userPassword" column="USER_PASSWORD"/>
+		<result property="userName" column="USER_NAME"/>
+		<result property="userCompany" column="USER_COMPANY"/>
+		<result property="userRegdate" column="USER_REGDATE"/>
+		<result property="userShcount" column="USER_SHCOUNT"/>
+		
+	</resultMap>
+	<resultMap class="relatedsh" id="relatedshResult">
+		<result property="relatedshNumSeq" column="RELATEDSH_NUMSEQ"/>
+		<result property="relatedshID" column="RELATEDSH_ID"/>
+		<result property="relatedshName" column="RELATEDSH_NAME"/>
+		<result property="relatedshUserID" column="RELATEDSH_USERID"/>
+		<result property="relatedshCompany" column="RELATEDSH_COMPANY"/>
+		<result property="relatedshDescription" column="RELATEDSH_DESCRIPTION"/>
+		
+	</resultMap>
+	
+	<select id="getUserSHCount" parameterClass="RequestParameter" resultMap="userResult">
+		SELECT
+			*
+		FROM
+			TBL_USER
+		WHERE
+			USER_ID = #relatedshUserID#
+		
+	</select>
+
+	<insert id="InsertStakeholderInformation" parameterClass="relatedsh">
+		INSERT INTO	TBL_DO_RELATEDSH
+			(RELATEDSH_ID, 
+			RELATEDSH_NAME, 
+			RELATEDSH_USERID, 
+			RELATEDSH_DESCRIPTION, 
+			RELATEDSH_COMPANY)	
+		VALUES
+			(#relatedshID#, 
+			#relatedshName#, 
+			#relatedshUserID#, 
+			#relatedshDescription#, 
+			#relatedshCompany#)	
+	</insert>
+	<update id="updateUserSHCnt" parameterClass="user">
+		UPDATE TBL_USER
+		SET
+			USER_SHCOUNT = #userShcount#
+			
+		WHERE 
+			USER_ID = #userID#
+
+	</update>
+
+
+</sqlMap>
+
+
+
+
+
+
+
+
+
+
+

@@ -10,6 +10,7 @@
 	<!-- 10.27. 봉재 - Board.xml 추가 -->
 	
 	<sqlMap resource="sqlmap/User.xml" />
+	<sqlMap resource="sqlmap/Arcinfo.xml" />
 
 	<!-- 
 	<sqlMap resource="sqlmap/ZipCode.xml" />

@@ -23,6 +23,7 @@ import com.ajou.nise.security.arcinfo.ArcinfoServiceImpl;
 // 모델들 모음
 import com.ajou.nise.security.model.User;
 import com.ajou.nise.security.model.Relatedsh;
+import com.ajou.nise.security.model.Platform;
 
 @Controller
 public class ArcinfoController {
@@ -85,6 +86,62 @@ public class ArcinfoController {
 		return mnv;
 	}
 
+	@RequestMapping("/arcinfo/submit_PlatformInfo.do")
+	public ModelAndView submit_PlatformInfo(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		RequestParameter rp = Utils.extractRequestParameters(req);	
+		ModelAndView mnv = new ModelAndView("/common/json_result");
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		System.out.println("-------------submit_PlatformInfo--------------");
+		System.out.println("rp = " + rp);
+
+		Platform platform = new Platform();
+		
+		// 데이터 핸들링을 위해 모델에 주입
+		platform.setPlatformPart(rp.get("platformPart").toString());
+		platform.setPlatformVendor(rp.get("platformVendor").toString());
+		platform.setPlatformProduct(rp.get("platformProduct").toString());
+		platform.setPlatformVersion(rp.get("platformVersion").toString());
+		platform.setPlatformUpdate(rp.get("platformUpdate").toString());
+		platform.setPlatformEdition(rp.get("platformEdition").toString());
+		platform.setPlatformLanguage(rp.get("platformLanguage").toString());
+		platform.setPlatformSoftwareEdition(rp.get("platformSoftwareEdition").toString());
+		platform.setPlatformTargetSoftware(rp.get("platformTargetSoftware").toString());
+		platform.setPlatformTargetHardware(rp.get("platformTargetHardware").toString());
+		platform.setPlatformOther(rp.get("platformOther").toString());
+				
+		// 주입된 정보를 바탕으로 아이디 만들기
+		String platformID = "cpe:2.3:"+ platform.getPlatformPart() + ":"
+				+ platform.getPlatformVendor() + ":" + platform.getPlatformProduct() + ":"
+				+ platform.getPlatformVersion() + ":" + platform.getPlatformUpdate() + ":"
+				+ platform.getPlatformEdition() + ":" + platform.getPlatformLanguage() + ":"
+				+ platform.getPlatformSoftwareEdition() + ":" + platform.getPlatformTargetSoftware() + ":"
+				+ platform.getPlatformTargetHardware() + ":" + platform.getPlatformOther();
+		platform.setPlatformID(platformID);
+
+		// 데이터 로그 찍기 
+		System.out.println(platform.getPlatformID());
+		
+		//중복 여부 확인
+		if(arcinfoService.checkUniquePlatformInfo(platform) == true)
+		{
+			// 중복되지 않으면 등록
+			arcinfoService.insertPlatformInfo(platform);
+			System.out.println("Success to the registration");
+			map.put("success", "등록 완료");
+		
+		}else
+		{
+			// 중복되면 등록안하고, 빠져나가기
+			System.out.println("Fail to the registration");
+			map.put("fail", "중복되는 정보가 있습니다.");		
+		}
+		
+		mnv.addObject("map", map);
+		mnv.addObject("callback", req.getParameter("callback"));
+		
+		return mnv;
+	}
 
 
 

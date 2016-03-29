@@ -68,5 +68,13 @@ public class ArcinfoServiceImpl implements com.ajou.nise.security.common.Service
 		return true;
 	}
 	
-
+	public boolean checkUniquePlatformInfo(Object obj) throws SQLException {
+		if (dao.checkUniquePlatformInfo(obj)==null) return true;
+		else return false;
+	}
+	
+	public int insertPlatformInfo(Object obj) throws SQLException {
+		this.dao.insertPlatformInfo(obj);
+		return 1;
+	}
 }

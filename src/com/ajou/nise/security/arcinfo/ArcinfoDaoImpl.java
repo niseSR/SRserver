@@ -54,5 +54,12 @@ public class ArcinfoDaoImpl extends BaseDao implements Dao {
 		// TODO Auto-generated method stub
 		getSqlMapClientTemplate().update("com.ajou.nise.security.arcinfo.updateUserSHCnt", obj);
 	}
+	
+	public Object checkUniquePlatformInfo(Object obj) throws SQLException {
+		return  getSqlMapClientTemplate().queryForObject("com.ajou.nise.security.arcinfo.checkPlatformInfo", obj);
+	}
 
+	public void insertPlatformInfo(Object obj) throws SQLException {
+		getSqlMapClientTemplate().insert("com.ajou.nise.security.arcinfo.InsertPlatformInformation", obj);
+	}
 }

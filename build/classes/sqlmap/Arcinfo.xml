@@ -8,6 +8,7 @@
 	<typeAlias alias ="RequestParameter" type="com.ajou.nise.security.common.RequestParameter"/>		
 	<typeAlias alias="user" type="com.ajou.nise.security.model.User"/>
 	<typeAlias alias="relatedsh" type="com.ajou.nise.security.model.Relatedsh"/>
+	<typeAlias alias="platform" type="com.ajou.nise.security.model.Platform"/>
 	
 	<resultMap class="user" id="userResult">
 		<result property="userNumSeq" column="USER_NUMSEQ"/>
@@ -17,8 +18,8 @@
 		<result property="userCompany" column="USER_COMPANY"/>
 		<result property="userRegdate" column="USER_REGDATE"/>
 		<result property="userShcount" column="USER_SHCOUNT"/>
-		
 	</resultMap>
+
 	<resultMap class="relatedsh" id="relatedshResult">
 		<result property="relatedshNumSeq" column="RELATEDSH_NUMSEQ"/>
 		<result property="relatedshID" column="RELATEDSH_ID"/>
@@ -26,7 +27,22 @@
 		<result property="relatedshUserID" column="RELATEDSH_USERID"/>
 		<result property="relatedshCompany" column="RELATEDSH_COMPANY"/>
 		<result property="relatedshDescription" column="RELATEDSH_DESCRIPTION"/>
-		
+	</resultMap>
+	
+	<resultMap class="platform" id="platformResult">
+		<result property="platformNumSeq" column="PLATFORM_NUMSEQ"/>
+		<result property="platformID" column="PLATFORM_ID"/>
+		<result property="platformPart" column="PLATFORM_PART"/>
+		<result property="platformVendor" column="PLATFORM_VENDOR"/>
+		<result property="platformProduct" column="PLATFORM_PRODUCT"/>
+		<result property="platformVersion" column="PLATFORM_VERSION"/>
+		<result property="platformUpdate" column="PLATFORM_UPDATE"/>
+		<result property="platformEdition" column="PLATFORM_EDITION"/>
+		<result property="platformLanguage" column="PLATFORM_LANGUAGE"/>
+		<result property="platformSoftwareEdition" column="PLATFORM_SOFTWAREEDITION"/>
+		<result property="platformTargetSoftware" column="PLATFORM_TARGETSOFTWARE"/>		
+		<result property="platformTargetHardware" column="PLATFORM_TARGETHARDWARE"/>
+		<result property="platformOther" column="PLATFORM_OTHER"/>
 	</resultMap>
 	
 	<select id="getUserSHCount" parameterClass="RequestParameter" resultMap="userResult">
@@ -62,7 +78,42 @@
 			USER_ID = #userID#
 
 	</update>
-
+	<select id="checkPlatformInfo" parameterClass="platform" resultMap="platformResult">
+		SELECT
+			*
+		FROM
+			TBL_DO_PLATFORM
+		WHERE
+			PLATFORM_ID = #platformID#
+	</select>
+	<insert id="InsertPlatformInformation" parameterClass="platform">
+		INSERT INTO	TBL_DO_PLATFORM
+			(PLATFORM_ID, 
+			PLATFORM_PART, 
+			PLATFORM_VENDOR, 
+			PLATFORM_PRODUCT, 
+			PLATFORM_VERSION,
+			PLATFORM_UPDATE,
+			PLATFORM_EDITION,
+			PLATFORM_LANGUAGE,
+			PLATFORM_SOFTWAREEDITION,
+			PLATFORM_TARGETSOFTWARE,
+			PLATFORM_TARGETHARDWARE,
+			PLATFORM_OTHER)	
+		VALUES
+			(#platformID#, 
+			#platformPart#, 
+			#platformVendor#, 
+			#platformProduct#,
+			#platformVersion#,
+			#platformUpdate#,
+			#platformEdition#,
+			#platformLanguage#,
+			#platformSoftwareEdition#,
+			#platformTargetSoftware#, 
+			#platformTargetHardware#,
+			#platformOther#)	
+	</insert>
 
 </sqlMap>
 

@@ -9,6 +9,10 @@
 	<typeAlias alias="user" type="com.ajou.nise.security.model.User"/>
 	<typeAlias alias="relatedsh" type="com.ajou.nise.security.model.Relatedsh"/>
 	<typeAlias alias="platform" type="com.ajou.nise.security.model.Platform"/>
+	<typeAlias alias="asset" type="com.ajou.nise.security.model.Asset"/>
+	<typeAlias alias="domainas" type="com.ajou.nise.security.model.Domainas"/>
+	<typeAlias alias="domainaspl" type="com.ajou.nise.security.model.Domainaspl"/>
+	<typeAlias alias="domainasrelatedsh" type="com.ajou.nise.security.model.Domainasrelatedsh"/>
 	
 	<resultMap class="user" id="userResult">
 		<result property="userNumSeq" column="USER_NUMSEQ"/>
@@ -18,6 +22,7 @@
 		<result property="userCompany" column="USER_COMPANY"/>
 		<result property="userRegdate" column="USER_REGDATE"/>
 		<result property="userShcount" column="USER_SHCOUNT"/>
+		<result property="userAscount" column="USER_ASCOUNT"/>
 	</resultMap>
 
 	<resultMap class="relatedsh" id="relatedshResult">
@@ -45,6 +50,37 @@
 		<result property="platformOther" column="PLATFORM_OTHER"/>
 	</resultMap>
 	
+	<resultMap class="asset" id="assetResult">
+		<result property="assetNumSeq" column="AS_NUMSEQ"/>
+		<result property="assetID" column="AS_ID"/>
+		<result property="assetName" column="AS_NAME"/>
+		<result property="assetDescription" column="AS_DESCRIPTION"/>
+	</resultMap>
+	
+	<resultMap class="domainas" id="domainasResult">
+		<result property="domainasNumSeq" column="DOMAINAS_NUMSEQ"/>
+		<result property="domainasID" column="DOMAINAS_ID"/>
+		<result property="domainasUserID" column="DOMAINAS_USERID"/>
+		<result property="domainasName" column="DOMAINAS_NAME"/>
+		<result property="domainasDescription" column="DOMAINAS_DESCRIPTION"/>
+		<result property="domainasCriticality" column="DOMAINAS_CRITICALITY"/>
+		<result property="domainasSGoalC" column="DOMAINAS_SGOALC"/>
+		<result property="domainasSGoalI" column="DOMAINAS_SGOALI"/>
+		<result property="domainasSGoalA" column="DOMAINAS_SGOALA"/>
+	</resultMap>
+	
+	<resultMap class="domainaspl" id="domainasplResult">
+		<result property="domainasplNumSeq" column="DOMAINASPL_NUMSEQ"/>
+		<result property="domainasplDomainasID" column="DOMAINASPL_DOMAINASID"/>
+		<result property="domainasplPlatformID" column="DOMAINASPL_PLATFORMID"/>
+	</resultMap>
+	
+	<resultMap class="domainasrelatedsh" id="domainasrelatedshResult">
+		<result property="domainasrelatedshNumSeq" column="DOMAINASRELATEDSH_NUMSEQ"/>
+		<result property="domainasrelatedshDomainasID" column="DOMAINASRELATEDSH_DOMAINASID"/>
+		<result property="domainasrelatedshRelatedshID" column="DOMAINASRELATEDSH_RELATEDSHID"/>
+	</resultMap>
+	
 	<select id="getUserSHCount" parameterClass="RequestParameter" resultMap="userResult">
 		SELECT
 			*
@@ -52,8 +88,16 @@
 			TBL_USER
 		WHERE
 			USER_ID = #relatedshUserID#
-		
 	</select>
+	<select id="getUserASCount" parameterClass="RequestParameter" resultMap="userResult">
+		SELECT
+			*
+		FROM
+			TBL_USER
+		WHERE
+			USER_ID = #domainasUserID#
+	</select>
+	
 
 	<insert id="InsertStakeholderInformation" parameterClass="relatedsh">
 		INSERT INTO	TBL_DO_RELATEDSH
@@ -86,6 +130,7 @@
 		WHERE
 			PLATFORM_ID = #platformID#
 	</select>
+	
 	<insert id="InsertPlatformInformation" parameterClass="platform">
 		INSERT INTO	TBL_DO_PLATFORM
 			(PLATFORM_ID, 
@@ -114,6 +159,70 @@
 			#platformTargetHardware#,
 			#platformOther#)	
 	</insert>
+	
+	<select id="selectAssetID" resultMap="assetResult" parameterClass="java.util.Map">
+		SELECT * FROM TBL_PO_AS WHERE AS_ID LIKE #assetType#
+	</select>
+	
+	<select id="selectRelatedSHList" parameterClass="RequestParameter" resultMap="relatedshResult">
+		SELECT
+			*
+		FROM
+			TBL_DO_RELATEDSH
+		WHERE
+			RELATEDSH_USERID = #relatedshUserID#
+		
+	</select>
+	
+	<insert id="InsertDomainasInformation" parameterClass="domainas">
+		INSERT INTO	TBL_DO_DOMAINAS
+			(DOMAINAS_ID, 
+			DOMAINAS_NAME, 
+			DOMAINAS_USERID, 
+			DOMAINAS_DESCRIPTION,
+			DOMAINAS_SGOALC,
+			DOMAINAS_SGOALI,
+			DOMAINAS_SGOALA,
+			DOMAINAS_CRITICALITY)	
+		VALUES
+			(#domainasID#, 
+			#domainasName#, 
+			#domainasUserID#, 
+			#domainasDescription#, 
+			#domainasSGoalC#,
+			#domainasSGoalI#,
+			#domainasSGoalA#,
+			#domainasCriticality#)	
+	</insert>
+	
+	<update id="updateUserASCnt" parameterClass="user">
+		UPDATE TBL_USER
+		SET
+			USER_ASCOUNT = #userAscount#
+			
+		WHERE 
+			USER_ID = #userID#
+
+	</update>
+	
+	<insert id="InsertDomainasPlatformInformation" parameterClass="java.util.Map">
+		INSERT INTO	TBL_DO_DOMAINASPL
+			(DOMAINASPL_DOMAINASID, 
+			DOMAINASPL_PLATFORMID)	
+		VALUES
+			(#domainasplDomainasID#, 
+			#domainasplPlatformID#)	
+	</insert>
+	
+	<insert id="InsertDomainasRelatedshInformation" parameterClass="java.util.Map">
+		INSERT INTO	TBL_DO_DOMAINASRELATEDSH
+			(DOMAINASRELATEDSH_DOMAINASID, 
+			DOMAINASRELATEDSH_RELATEDSHID)	
+		VALUES
+			(#domainasrelatedshDomainasID#, 
+			#domainasrelatedshRelatedshID#)	
+	</insert>
+	
 
 </sqlMap>
 

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.ajou.nise.security.common.BaseDao;
 import com.ajou.nise.security.common.Dao;
-
+import com.ajou.nise.security.model.*;
 
 @Repository("arcinfoDao")
 public class ArcinfoDaoImpl extends BaseDao implements Dao {
@@ -46,6 +46,10 @@ public class ArcinfoDaoImpl extends BaseDao implements Dao {
 		return  getSqlMapClientTemplate().queryForObject("com.ajou.nise.security.arcinfo.getUserSHCount", obj);
 	}
 	
+	public Object getUserAScnt(Object obj) throws SQLException {
+		return  getSqlMapClientTemplate().queryForObject("com.ajou.nise.security.arcinfo.getUserASCount", obj);
+	}
+	
 	public void insertStakeholderInfo(Object obj) throws SQLException {
 		getSqlMapClientTemplate().insert("com.ajou.nise.security.arcinfo.InsertStakeholderInformation", obj);
 	}
@@ -61,5 +65,34 @@ public class ArcinfoDaoImpl extends BaseDao implements Dao {
 
 	public void insertPlatformInfo(Object obj) throws SQLException {
 		getSqlMapClientTemplate().insert("com.ajou.nise.security.arcinfo.InsertPlatformInformation", obj);
+	}
+	
+	public List<Asset> getAssetList(Object obj) throws SQLException {
+		// spring 프레임워크의 SqlMapClientTemplate 호출후 MySQL insert 구문 입력을 위해 User.xml의 InsertUserInformation 호출
+		// obj는 user 모델에서 가져옴
+		return (List<Asset>)getSqlMapClientTemplate().queryForList("com.ajou.nise.security.arcinfo.selectAssetID", obj);
+	} 
+	
+	public List<Asset> getRelatedSHList(Object obj) throws SQLException {
+		// spring 프레임워크의 SqlMapClientTemplate 호출후 MySQL insert 구문 입력을 위해 User.xml의 InsertUserInformation 호출
+		// obj는 user 모델에서 가져옴
+		return (List<Asset>)getSqlMapClientTemplate().queryForList("com.ajou.nise.security.arcinfo.selectRelatedSHList", obj);
+	} 
+	
+	public void insertDomainasInfo(Object obj) throws SQLException {
+		getSqlMapClientTemplate().insert("com.ajou.nise.security.arcinfo.InsertDomainasInformation", obj);
+	}
+	
+	public void updateUserASCnt(Object obj) throws SQLException {
+		// TODO Auto-generated method stub
+		getSqlMapClientTemplate().update("com.ajou.nise.security.arcinfo.updateUserASCnt", obj);
+	}
+	
+	public void insertDomainasplInfo(Object obj) throws SQLException {
+		getSqlMapClientTemplate().insert("com.ajou.nise.security.arcinfo.InsertDomainasPlatformInformation", obj);
+	}
+	
+	public void insertDomainasRelatedshInfo(Object obj) throws SQLException {
+		getSqlMapClientTemplate().insert("com.ajou.nise.security.arcinfo.InsertDomainasRelatedshInformation", obj);
 	}
 }

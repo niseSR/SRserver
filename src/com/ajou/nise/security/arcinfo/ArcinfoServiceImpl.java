@@ -77,4 +77,41 @@ public class ArcinfoServiceImpl implements com.ajou.nise.security.common.Service
 		this.dao.insertPlatformInfo(obj);
 		return 1;
 	}
+	
+	public List getAssetList(Object obj) throws SQLException {
+		// TODO Auto-generated method stub
+		return dao.getAssetList(obj);
+	}	
+	
+	public List getRelatedSHList(Object obj) throws SQLException {
+		// TODO Auto-generated method stub
+		return dao.getRelatedSHList(obj);
+	}	
+
+	public Object getUserAScnt(Object obj) throws SQLException {
+		return this.dao.getUserAScnt(obj);
+	}
+	
+	public int insertDomainasInfo(Object obj) throws SQLException {
+		this.dao.insertDomainasInfo(obj);
+		return 1;
+	}
+	
+	public boolean updateUserASCnt(Object obj) throws SQLException {
+		// TODO Auto-generated method stub
+		dao.updateUserASCnt(obj);
+		return true;
+	}
+	
+	public int insertDomainasplInfo(Object obj) throws SQLException {
+		this.dao.insertDomainasplInfo(obj);
+		return 1;
+	}
+	
+	public int insertDomainasRelatedshInfo(Object obj) throws SQLException {
+		this.dao.insertDomainasRelatedshInfo(obj);
+		return 1;
+	}
+	
+	
 }

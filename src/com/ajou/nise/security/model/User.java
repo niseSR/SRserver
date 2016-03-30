@@ -9,6 +9,7 @@ public class User {
 	private String userCompany;
 	private String userRegdate;
 	private int userShcount;
+	private int userAscount;
 	
 	// 생성자
 	public User() {
@@ -68,6 +69,14 @@ public class User {
 
 	public void setUserShcount(int userShcount) {
 		this.userShcount = userShcount;
+	}
+
+	public int getUserAscount() {
+		return userAscount;
+	}
+
+	public void setUserAscount(int userAscount) {
+		this.userAscount = userAscount;
 	}
 
 }

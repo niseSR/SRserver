@@ -113,5 +113,18 @@ public class ArcinfoServiceImpl implements com.ajou.nise.security.common.Service
 		return 1;
 	}
 	
+	public List getCMList(Object obj) throws SQLException {
+		// TODO Auto-generated method stub
+		return dao.getCMList(obj);
+	}	
 	
+	public List getImplCMList(Object obj) throws SQLException {
+		// TODO Auto-generated method stub
+		return dao.getImplCMList(obj);
+	}
+	
+	public int insertCurrentCMInfo(Object obj) throws SQLException {
+		this.dao.insertCurrentCMInfo(obj);
+		return 1;
+	}
 }

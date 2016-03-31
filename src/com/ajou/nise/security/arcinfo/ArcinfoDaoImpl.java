@@ -55,7 +55,6 @@ public class ArcinfoDaoImpl extends BaseDao implements Dao {
 	}
 	
 	public void updateUserSHCnt(Object obj) throws SQLException {
-		// TODO Auto-generated method stub
 		getSqlMapClientTemplate().update("com.ajou.nise.security.arcinfo.updateUserSHCnt", obj);
 	}
 	
@@ -68,14 +67,10 @@ public class ArcinfoDaoImpl extends BaseDao implements Dao {
 	}
 	
 	public List<Asset> getAssetList(Object obj) throws SQLException {
-		// spring 프레임워크의 SqlMapClientTemplate 호출후 MySQL insert 구문 입력을 위해 User.xml의 InsertUserInformation 호출
-		// obj는 user 모델에서 가져옴
 		return (List<Asset>)getSqlMapClientTemplate().queryForList("com.ajou.nise.security.arcinfo.selectAssetID", obj);
 	} 
 	
 	public List<Asset> getRelatedSHList(Object obj) throws SQLException {
-		// spring 프레임워크의 SqlMapClientTemplate 호출후 MySQL insert 구문 입력을 위해 User.xml의 InsertUserInformation 호출
-		// obj는 user 모델에서 가져옴
 		return (List<Asset>)getSqlMapClientTemplate().queryForList("com.ajou.nise.security.arcinfo.selectRelatedSHList", obj);
 	} 
 	
@@ -84,7 +79,6 @@ public class ArcinfoDaoImpl extends BaseDao implements Dao {
 	}
 	
 	public void updateUserASCnt(Object obj) throws SQLException {
-		// TODO Auto-generated method stub
 		getSqlMapClientTemplate().update("com.ajou.nise.security.arcinfo.updateUserASCnt", obj);
 	}
 	
@@ -94,5 +88,16 @@ public class ArcinfoDaoImpl extends BaseDao implements Dao {
 	
 	public void insertDomainasRelatedshInfo(Object obj) throws SQLException {
 		getSqlMapClientTemplate().insert("com.ajou.nise.security.arcinfo.InsertDomainasRelatedshInformation", obj);
+	}
+	public List<CM> getCMList(Object obj) throws SQLException {
+		return (List<CM>)getSqlMapClientTemplate().queryForList("com.ajou.nise.security.arcinfo.selectCMID", obj);
+	} 
+	
+	public List<Implcm> getImplCMList(Object obj) throws SQLException {
+		return (List<Implcm>)getSqlMapClientTemplate().queryForList("com.ajou.nise.security.arcinfo.selectImplCMID", obj);
+	} 
+	
+	public void insertCurrentCMInfo(Object obj) throws SQLException {
+		getSqlMapClientTemplate().insert("com.ajou.nise.security.arcinfo.InsertCurrentCMInformation", obj);
 	}
 }

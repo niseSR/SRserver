@@ -5,11 +5,14 @@
 	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
 <sqlMap namespace="com.ajou.nise.security.arcinfo">
 
-	<typeAlias alias ="RequestParameter" type="com.ajou.nise.security.common.RequestParameter"/>		
+	<typeAlias alias="RequestParameter" type="com.ajou.nise.security.common.RequestParameter"/>		
 	<typeAlias alias="user" type="com.ajou.nise.security.model.User"/>
 	<typeAlias alias="relatedsh" type="com.ajou.nise.security.model.Relatedsh"/>
 	<typeAlias alias="platform" type="com.ajou.nise.security.model.Platform"/>
 	<typeAlias alias="asset" type="com.ajou.nise.security.model.Asset"/>
+	<typeAlias alias="cm" type="com.ajou.nise.security.model.CM"/>
+	<typeAlias alias="currentcm" type="com.ajou.nise.security.model.Currentcm"/>
+	<typeAlias alias="implcm" type="com.ajou.nise.security.model.Implcm"/>
 	<typeAlias alias="domainas" type="com.ajou.nise.security.model.Domainas"/>
 	<typeAlias alias="domainaspl" type="com.ajou.nise.security.model.Domainaspl"/>
 	<typeAlias alias="domainasrelatedsh" type="com.ajou.nise.security.model.Domainasrelatedsh"/>
@@ -57,6 +60,28 @@
 		<result property="assetDescription" column="AS_DESCRIPTION"/>
 	</resultMap>
 	
+	<resultMap class="cm" id="cmResult">
+		<result property="cmNumSeq" column="CM_NUMSEQ"/>
+		<result property="cmID" column="CM_ID"/>
+		<result property="cmName" column="CM_NAME"/>
+		<result property="cmDescription" column="CM_DESCRIPTION"/>
+	</resultMap>
+	
+	<resultMap class="implcm" id="implcmResult">
+		<result property="implcmNumSeq" column="IMPLCM_NUMSEQ"/>
+		<result property="implcmID" column="IMPLCM_ID"/>
+		<result property="implcmName" column="IMPLCM_NAME"/>
+		<result property="implcmDescription" column="IMPLCM_DESCRIPTION"/>
+		<result property="implcmSecService" column="IMPLCM_SECSERVICE"/>
+	</resultMap>
+	
+	<resultMap class="currentcm" id="currentcmResult">
+		<result property="currentcmNumSeq" column="CURRENTCM_NUMSEQ"/>
+		<result property="currentcmCMID" column="CURRENTCM_CMID"/>
+		<result property="currentcmUserID" column="CURRENTCM_USERID"/>
+		<result property="currentcmImplcmID" column="CURRENTCM_IMPLCMID"/>
+	</resultMap>
+	
 	<resultMap class="domainas" id="domainasResult">
 		<result property="domainasNumSeq" column="DOMAINAS_NUMSEQ"/>
 		<result property="domainasID" column="DOMAINAS_ID"/>
@@ -97,8 +122,6 @@
 		WHERE
 			USER_ID = #domainasUserID#
 	</select>
-	
-
 	<insert id="InsertStakeholderInformation" parameterClass="relatedsh">
 		INSERT INTO	TBL_DO_RELATEDSH
 			(RELATEDSH_ID, 
@@ -161,17 +184,39 @@
 	</insert>
 	
 	<select id="selectAssetID" resultMap="assetResult" parameterClass="java.util.Map">
-		SELECT * FROM TBL_PO_AS WHERE AS_ID LIKE #assetType#
+		SELECT 
+			* 
+		FROM 
+			TBL_PO_AS 
+		WHERE 
+			AS_ID LIKE #assetType#
+	</select>
+	
+	<select id="selectCMID" resultMap="cmResult" parameterClass="java.util.Map">
+		SELECT 
+			* 
+		FROM 
+			TBL_PO_CM 
+		WHERE 
+			CM_ID LIKE #cmType#
+	</select>
+	
+	<select id="selectImplCMID" resultMap="implcmResult" parameterClass="java.util.Map">
+		SELECT 
+			* 
+		FROM 
+			TBL_PO_IMPLCM 
+		WHERE 
+			IMPLCM_ID LIKE #implcmType#
 	</select>
 	
 	<select id="selectRelatedSHList" parameterClass="RequestParameter" resultMap="relatedshResult">
-		SELECT
-			*
-		FROM
-			TBL_DO_RELATEDSH
-		WHERE
+		SELECT 
+			* 
+		FROM 
+			TBL_DO_RELATEDSH 
+		WHERE 
 			RELATEDSH_USERID = #relatedshUserID#
-		
 	</select>
 	
 	<insert id="InsertDomainasInformation" parameterClass="domainas">
@@ -202,7 +247,6 @@
 			
 		WHERE 
 			USER_ID = #userID#
-
 	</update>
 	
 	<insert id="InsertDomainasPlatformInformation" parameterClass="java.util.Map">
@@ -223,7 +267,16 @@
 			#domainasrelatedshRelatedshID#)	
 	</insert>
 	
-
+	<insert id="InsertCurrentCMInformation" parameterClass="RequestParameter">
+		INSERT INTO	TBL_DO_CURRENTCM
+			(CURRENTCM_CMID,
+			CURRENTCM_USERID,
+			CURRENTCM_IMPLCMID)	
+		VALUES
+			(#currentcmCMID#,
+			#currentcmUserID#,
+			#currentcmImplcmID#)	
+	</insert>
 </sqlMap>
 
 

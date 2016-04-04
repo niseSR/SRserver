@@ -17,6 +17,7 @@
 		<result property="userRegdate" column="USER_REGDATE"/>
 		<result property="userShcount" column="USER_SHCOUNT"/>
 		<result property="userAscount" column="USER_ASCOUNT"/>
+		<result property="userThreatcount" column="USER_THREATCOUNT"/>
 		
 	</resultMap>
 	

@@ -10,6 +10,7 @@ public class User {
 	private String userRegdate;
 	private int userShcount;
 	private int userAscount;
+	private int userThreatcount;
 	
 	// 생성자
 	public User() {
@@ -77,6 +78,14 @@ public class User {
 
 	public void setUserAscount(int userAscount) {
 		this.userAscount = userAscount;
+	}
+
+	public int getUserThreatcount() {
+		return userThreatcount;
+	}
+
+	public void setUserThreatcount(int userThreatcount) {
+		this.userThreatcount = userThreatcount;
 	}
 
 }

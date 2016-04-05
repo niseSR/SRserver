@@ -457,5 +457,198 @@ public class ArcinfoController {
 		return mnv;
 	}
 
+	@RequestMapping("/arcinfo/select_CAPECID.do")
+	public ModelAndView select_CAPECID(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		RequestParameter rp = Utils.extractRequestParameters(req);	
+		ModelAndView mnv = new ModelAndView("/common/json_result");
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		System.out.println("-------------select_CAPECID--------------");
+		System.out.println("rp = " + rp);
+
+		CAPEC capec = (CAPEC) this.arcinfoService.selectCAPECID(rp);
+		
+		if(capec != null)
+		{
+			System.out.println("Success to bring the data");
+			map.put("success", capec);
+		}else
+		{
+			System.out.println("Fail to bring the data");
+			map.put("fail", "가져오기 실패");		
+		}
+		 
+		mnv.addObject("map", map);
+		mnv.addObject("callback", req.getParameter("callback"));
+		
+		return mnv;
+	}
+
+	@RequestMapping("/arcinfo/select_CVEID.do")
+	public ModelAndView select_CVEID(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		RequestParameter rp = Utils.extractRequestParameters(req);	
+		ModelAndView mnv = new ModelAndView("/common/json_result");
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		System.out.println("-------------select_CVEID--------------");
+		System.out.println("rp = " + rp);
+
+		CVE cve = (CVE) this.arcinfoService.selectCVEID(rp);
+		
+		if(cve != null)
+		{
+			System.out.println("Success to bring the data");
+			map.put("success", cve);
+		}else
+		{
+			System.out.println("Fail to bring the data");
+			map.put("fail", "가져오기 실패");		
+		}
+		 
+		mnv.addObject("map", map);
+		mnv.addObject("callback", req.getParameter("callback"));
+		
+		return mnv;
+	}
+
+	@RequestMapping("/arcinfo/select_CWEID.do")
+	public ModelAndView select_CWEID(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		RequestParameter rp = Utils.extractRequestParameters(req);	
+		ModelAndView mnv = new ModelAndView("/common/json_result");
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		System.out.println("-------------select_CWEID--------------");
+		System.out.println("rp = " + rp);
+
+		CWE cwe = (CWE) this.arcinfoService.selectCWEID(rp);
+		
+		if(cwe != null)
+		{
+			System.out.println("Success to bring the data");
+			map.put("success", cwe);
+		}else
+		{
+			System.out.println("Fail to bring the data");
+			map.put("fail", "가져오기 실패");		
+		}
+		 
+		mnv.addObject("map", map);
+		mnv.addObject("callback", req.getParameter("callback"));
+		
+		return mnv;
+	}
+	
+	@RequestMapping("/arcinfo/submit_ThreatInfo.do")
+	public ModelAndView submit_ThreatInfo(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		RequestParameter rp = Utils.extractRequestParameters(req);	
+		ModelAndView mnv = new ModelAndView("/common/json_result");
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		System.out.println("-------------submit_ThreatInfo--------------");
+		System.out.println("rp = " + rp);
+
+		Threat threat = new Threat();
+
+		//user의 Domain Asset의 count number 가져오기(사용자 Usability를 위해 자동으로 ID를 부여하기 위한 작업임)
+		User user = (User) this.arcinfoService.getUserThreatCnt(rp);
+		int getuserThreatcountResult = user.getUserThreatcount();
+		getuserThreatcountResult = getuserThreatcountResult +1;
+		String userThreatCnt = String.valueOf(getuserThreatcountResult);
+		
+		//user의 Domain Asset의 Count Number를 바탕으로 Domain Asset의 아이디 생성  
+		threat.setThreatID(rp.get("threatID").toString() + userThreatCnt);
+		threat.setThreatName(rp.get("threatName").toString());
+		threat.setThreatDescription(rp.get("threatDescription").toString());
+
+		// 최종 insert가 완료되면 user의 Stakeholder counter를 1 올린다.(추후에 삭제시 1 빼는 것 로직 추가 예정)
+		if(arcinfoService.insertThreatInfo(threat) == 1)
+		{
+			user.setUserThreatcount(getuserThreatcountResult);
+			arcinfoService.updateUserThreatCnt(user);
+
+			System.out.println("Success to the registration");
+			map.put("success", threat.getThreatID());
+		
+		}else
+		{
+			System.out.println("Fail to the registration");
+			map.put("fail", "등록 실패");		
+		}
+		 
+		mnv.addObject("map", map);
+		mnv.addObject("callback", req.getParameter("callback"));
+		
+		return mnv;
+	}
+
+	@RequestMapping("/arcinfo/submit_ThreatPlatformInfo.do")
+	public ModelAndView submit_ThreatPlatformInfo(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		RequestParameter rp = Utils.extractRequestParameters(req);	
+		ModelAndView mnv = new ModelAndView("/common/json_result");
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		System.out.println("-------------submit_ThreatPlatformInfo--------------");
+		System.out.println("rp = " + rp);
+
+		// request로 온 데이터를 분리
+		String tmpthreatplPlatformID=rp.get("threatplPlatformID").toString();
+		String [] resultThreatplPlatformID =tmpthreatplPlatformID.split(",");
+		
+		// 데이터를 hash map에 집어넣고 반복적으로 table에 입력(Domain Asset 과 Platform 정보 종합)
+		for( int i = 0; i < resultThreatplPlatformID.length; i++ ){
+			System.out.println( "문자(열) " + (i+1) + " : " + resultThreatplPlatformID[i] );
+			Map<String, String> param = new HashMap<String, String>();
+		    param.put("threatplThreatID", rp.get("threatplThreatID").toString());
+		    param.put("threatplPlatformID", resultThreatplPlatformID[i]);
+		    arcinfoService.insertThreatplInfo(param);
+		}
+
+		// 여기까지 도달한 것 확인을 위해 첨가
+		int k=1;
+		if(k == 1)
+		{
+
+			System.out.println("Success to the registration");
+			map.put("success", "Success to the registration");
+		
+		}else
+		{
+			System.out.println("Fail to the registration");
+			map.put("fail", "등록 실패");		
+		}
+
+		mnv.addObject("map", map);
+		mnv.addObject("callback", req.getParameter("callback"));
+		
+		return mnv;
+	}
+	
+	@RequestMapping("/arcinfo/submit_ThreatactInfo.do")
+	public ModelAndView submit_ThreatactInfo(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		RequestParameter rp = Utils.extractRequestParameters(req);	
+		ModelAndView mnv = new ModelAndView("/common/json_result");
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		System.out.println("-------------submit_ThreatactInfo--------------");
+		System.out.println("rp = " + rp);
+
+		//user의 Domain Asset의 count number 가져오기(사용자 Usability를 위해 자동으로 ID를 부여하기 위한 작업임)
+		if(arcinfoService.insertThreatactInfo(rp) == 1)
+		{
+			System.out.println("Success to the registration");
+			map.put("success", "등록 성공");
+		
+		}else
+		{
+			System.out.println("Fail to the registration");
+			map.put("fail", "등록 실패");		
+		}
+		 
+		mnv.addObject("map", map);
+		mnv.addObject("callback", req.getParameter("callback"));
+		
+		return mnv;
+	}
+
 
 }

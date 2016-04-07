@@ -3,7 +3,7 @@
 <!DOCTYPE sqlMap
 	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
 	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
-<sqlMap namespace="com.ajou.nise.security.arcinfo">
+<sqlMap namespace="com.ajou.nise.security.risk">
 
 	<typeAlias alias="RequestParameter" type="com.ajou.nise.security.common.RequestParameter"/>		
 	<typeAlias alias="user" type="com.ajou.nise.security.model.User"/>
@@ -161,270 +161,135 @@
 		<result property="threatactCAPECID" column="THREATACT_CAPECID"/>
 		<result property="threatactCVEID" column="THREATACT_CVEID"/>
 		<result property="threatactCWEID" column="THREATACT_CWEID"/>
-		
 	</resultMap>
 	
-	
-	
-	<select id="getUserSHCount" parameterClass="RequestParameter" resultMap="userResult">
+	<select id="selectDomainasList" parameterClass="java.util.Map" resultMap="domainasResult">
 		SELECT
 			*
 		FROM
-			TBL_USER
+			TBL_DO_DOMAINAS
 		WHERE
-			USER_ID = #relatedshUserID#
-	</select>
-	<select id="getUserASCount" parameterClass="RequestParameter" resultMap="userResult">
-		SELECT
-			*
-		FROM
-			TBL_USER
-		WHERE
-			USER_ID = #domainasUserID#
-	</select>
-	<select id="getUserThreatCount" parameterClass="RequestParameter" resultMap="userResult">
-		SELECT
-			*
-		FROM
-			TBL_USER
-		WHERE
-			USER_ID = #threatUserID#
+			DOMAINAS_USERID = #domainasUserID# and DOMAINAS_ID LIKE #domainasID#
 	</select>
 	
-	<insert id="InsertStakeholderInformation" parameterClass="relatedsh">
-		INSERT INTO	TBL_DO_RELATEDSH
-			(RELATEDSH_ID, 
-			RELATEDSH_NAME, 
-			RELATEDSH_USERID, 
-			RELATEDSH_DESCRIPTION, 
-			RELATEDSH_COMPANY)	
-		VALUES
-			(#relatedshID#, 
-			#relatedshName#, 
-			#relatedshUserID#, 
-			#relatedshDescription#, 
-			#relatedshCompany#)	
-	</insert>
-	<update id="updateUserSHCnt" parameterClass="user">
-		UPDATE TBL_USER
-		SET
-			USER_SHCOUNT = #userShcount#
-			
-		WHERE 
-			USER_ID = #userID#
+	<select id="selectThreatListByName" parameterClass="java.util.Map" resultMap="threatResult">
+		SELECT
+			*
+		FROM
+			TBL_DO_THREAT
+		WHERE
+			THREAT_NAME = #threatName1# OR 
+			THREAT_NAME LIKE #threatName2# OR 
+			THREAT_NAME LIKE #threatName3# OR 
+			THREAT_NAME LIKE #threatName4# 
+	</select>
+	
+	<select id="selectThreatactListByID" parameterClass="RequestParameter" resultMap="threatactResult">
+		SELECT
+			*
+		FROM
+			TBL_DO_THREATACT
+		WHERE
+			THREATACT_THREATID = #threatactThreatID#
+	</select>
+	
+	<select id="selectDomainasListByID" parameterClass="RequestParameter" resultMap="domainasResult">
+		SELECT
+			*
+		FROM
+			TBL_DO_DOMAINAS
+		WHERE
+			DOMAINAS_ID = #domainasID#
+	</select>
+	
+	<select id="getCurrentcmListByMC" parameterClass="java.util.Map" resultMap="currentcmResult">
+		SELECT
+			*
+		FROM
+			TBL_DO_CURRENTCM
+		WHERE
+			CURRENTCM_ID LIKE #currentcmID# AND 
+			CURRENTCM_CMID LIKE #currentcmCMIDMC# 
+	</select>
+	
+	<select id="getCurrentcmListByPC" parameterClass="java.util.Map" resultMap="currentcmResult">
+		SELECT
+			*
+		FROM
+			TBL_DO_CURRENTCM
+		WHERE
+			CURRENTCM_ID LIKE #currentcmID# AND 
+			CURRENTCM_CMID LIKE #currentcmCMIDPC# 
+	</select>
+	
+	<select id="getCurrentcmListByRC" parameterClass="java.util.Map" resultMap="currentcmResult">
+		SELECT
+			*
+		FROM
+			TBL_DO_CURRENTCM
+		WHERE
+			CURRENTCM_ID LIKE #currentcmID# AND 
+			CURRENTCM_CMID LIKE #currentcmCMIDRC# 
+	</select>
 
-	</update>
-	<update id="updateUserThreatCnt" parameterClass="user">
-		UPDATE TBL_USER
-		SET
-			USER_THREATCOUNT = #userThreatcount#
-			
-		WHERE 
-			USER_ID = #userID#
-
-	</update>
-	
-	<select id="checkPlatformInfo" parameterClass="platform" resultMap="platformResult">
+	<select id="getCurrentcmListByMI" parameterClass="java.util.Map" resultMap="currentcmResult">
 		SELECT
 			*
 		FROM
-			TBL_DO_PLATFORM
+			TBL_DO_CURRENTCM
 		WHERE
-			PLATFORM_ID = #platformID#
+			CURRENTCM_ID LIKE #currentcmID# AND 
+			CURRENTCM_CMID LIKE #currentcmCMIDMI# 
+	</select>
+
+	<select id="getCurrentcmListByPI" parameterClass="java.util.Map" resultMap="currentcmResult">
+		SELECT
+			*
+		FROM
+			TBL_DO_CURRENTCM
+		WHERE
+			CURRENTCM_ID LIKE #currentcmID# AND 
+			CURRENTCM_CMID LIKE #currentcmCMIDPI# 
 	</select>
 	
-	<insert id="InsertPlatformInformation" parameterClass="platform">
-		INSERT INTO	TBL_DO_PLATFORM
-			(PLATFORM_ID, 
-			PLATFORM_PART, 
-			PLATFORM_VENDOR, 
-			PLATFORM_PRODUCT, 
-			PLATFORM_VERSION,
-			PLATFORM_UPDATE,
-			PLATFORM_EDITION,
-			PLATFORM_LANGUAGE,
-			PLATFORM_SOFTWAREEDITION,
-			PLATFORM_TARGETSOFTWARE,
-			PLATFORM_TARGETHARDWARE,
-			PLATFORM_OTHER)	
-		VALUES
-			(#platformID#, 
-			#platformPart#, 
-			#platformVendor#, 
-			#platformProduct#,
-			#platformVersion#,
-			#platformUpdate#,
-			#platformEdition#,
-			#platformLanguage#,
-			#platformSoftwareEdition#,
-			#platformTargetSoftware#, 
-			#platformTargetHardware#,
-			#platformOther#)	
-	</insert>
-	
-	<select id="selectAssetID" resultMap="assetResult" parameterClass="java.util.Map">
-		SELECT 
-			* 
-		FROM 
-			TBL_PO_AS 
-		WHERE 
-			AS_ID LIKE #assetType#
+	<select id="getCurrentcmListByRI" parameterClass="java.util.Map" resultMap="currentcmResult">
+		SELECT
+			*
+		FROM
+			TBL_DO_CURRENTCM
+		WHERE
+			CURRENTCM_ID LIKE #currentcmID# AND 
+			CURRENTCM_CMID LIKE #currentcmCMIDRI# 
 	</select>
 	
-	<select id="selectCMID" resultMap="cmResult" parameterClass="java.util.Map">
-		SELECT 
-			* 
-		FROM 
-			TBL_PO_CM 
-		WHERE 
-			CM_ID LIKE #cmType#
+	<select id="getCurrentcmListByMA" parameterClass="java.util.Map" resultMap="currentcmResult">
+		SELECT
+			*
+		FROM
+			TBL_DO_CURRENTCM
+		WHERE
+			CURRENTCM_ID LIKE #currentcmID# AND 
+			CURRENTCM_CMID LIKE #currentcmCMIDMA# 
 	</select>
 	
-	<select id="selectImplCMID" resultMap="implcmResult" parameterClass="java.util.Map">
-		SELECT 
-			* 
-		FROM 
-			TBL_PO_IMPLCM 
-		WHERE 
-			IMPLCM_ID LIKE #implcmType#
+	<select id="getCurrentcmListByPA" parameterClass="java.util.Map" resultMap="currentcmResult">
+		SELECT
+			*
+		FROM
+			TBL_DO_CURRENTCM
+		WHERE
+			CURRENTCM_ID LIKE #currentcmID# AND 
+			CURRENTCM_CMID LIKE #currentcmCMIDPA# 
 	</select>
 	
-	<select id="selectRelatedSHList" parameterClass="RequestParameter" resultMap="relatedshResult">
-		SELECT 
-			* 
-		FROM 
-			TBL_DO_RELATEDSH 
-		WHERE 
-			RELATEDSH_USERID = #relatedshUserID#
+	<select id="getCurrentcmListByRA" parameterClass="java.util.Map" resultMap="currentcmResult">
+		SELECT
+			*
+		FROM
+			TBL_DO_CURRENTCM
+		WHERE
+			CURRENTCM_ID LIKE #currentcmID# AND 
+			CURRENTCM_CMID LIKE #currentcmCMIDRA# 
 	</select>
-	
-	<insert id="InsertDomainasInformation" parameterClass="domainas">
-		INSERT INTO	TBL_DO_DOMAINAS
-			(DOMAINAS_ID, 
-			DOMAINAS_NAME, 
-			DOMAINAS_USERID, 
-			DOMAINAS_DESCRIPTION,
-			DOMAINAS_SGOALC,
-			DOMAINAS_SGOALI,
-			DOMAINAS_SGOALA,
-			DOMAINAS_CRITICALITY)	
-		VALUES
-			(#domainasID#, 
-			#domainasName#, 
-			#domainasUserID#, 
-			#domainasDescription#, 
-			#domainasSGoalC#,
-			#domainasSGoalI#,
-			#domainasSGoalA#,
-			#domainasCriticality#)	
-	</insert>
-	
-	<update id="updateUserASCnt" parameterClass="user">
-		UPDATE TBL_USER
-		SET
-			USER_ASCOUNT = #userAscount#
-			
-		WHERE 
-			USER_ID = #userID#
-	</update>
-	
-	<insert id="InsertDomainasPlatformInformation" parameterClass="java.util.Map">
-		INSERT INTO	TBL_DO_DOMAINASPL
-			(DOMAINASPL_DOMAINASID, 
-			DOMAINASPL_PLATFORMID)	
-		VALUES
-			(#domainasplDomainasID#, 
-			#domainasplPlatformID#)	
-	</insert>
-	
-	<insert id="InsertDomainasRelatedshInformation" parameterClass="java.util.Map">
-		INSERT INTO	TBL_DO_DOMAINASRELATEDSH
-			(DOMAINASRELATEDSH_DOMAINASID, 
-			DOMAINASRELATEDSH_RELATEDSHID)	
-		VALUES
-			(#domainasrelatedshDomainasID#, 
-			#domainasrelatedshRelatedshID#)	
-	</insert>
-	
-	<insert id="InsertCurrentCMInformation" parameterClass="RequestParameter">
-		INSERT INTO	TBL_DO_CURRENTCM
-			(CURRENTCM_CMID,
-			CURRENTCM_ID,
-			CURRENTCM_USERID,
-			CURRENTCM_IMPLCMID,
-			CURRENTCM_IMPLCMNAME)	
-		VALUES
-			(#currentcmCMID#,
-			#currentcmID#,
-			#currentcmUserID#,
-			#currentcmImplcmID#,
-			#currentcmImplcmName#)	
-	</insert>
-	
-	<select id="selectCAPECID" parameterClass="RequestParameter" resultMap="capecResult">
-		SELECT 
-			* 
-		FROM 
-			TBL_PO_CAPEC 
-		WHERE 
-			CAPEC_ID = #capecID#
-	</select>
-	
-	<select id="selectCVEID" parameterClass="RequestParameter" resultMap="cveResult">
-		SELECT 
-			* 
-		FROM 
-			TBL_PO_CVE 
-		WHERE 
-			CVE_ID = #cveID#
-	</select>
-	
-	<select id="selectCWEID" parameterClass="RequestParameter" resultMap="cweResult">
-		SELECT 
-			* 
-		FROM 
-			TBL_PO_CWE 
-		WHERE 
-			CWE_ID = #cweID#
-	</select>
-	
-	<insert id="InsertThreatInformation" parameterClass="threat">
-		INSERT INTO	TBL_DO_THREAT
-			(THREAT_ID, 
-			THREAT_NAME, 
-			THREAT_DESCRIPTION)	
-		VALUES
-			(#threatID#, 
-			#threatName#, 
-			#threatDescription#)	
-	</insert>
-	
-	<insert id="InsertThreatPlatformInformation" parameterClass="java.util.Map">
-		INSERT INTO	TBL_DO_THREATPL
-			(THREATPL_THREATID, 
-			THREATPL_PLATFORMID)	
-		VALUES
-			(#threatplThreatID#, 
-			#threatplPlatformID#)	
-	</insert>
-	
-	<insert id="InsertThreatactInformation" parameterClass="RequestParameter">
-		INSERT INTO	TBL_DO_THREATACT
-			(THREATACT_THREATID, 
-			THREATACT_ASID,
-			THREATACT_MGOAL,
-			THREATACT_ACTDESCRIPTION,
-			THREATACT_CAPECID,
-			THREATACT_CVEID,
-			THREATACT_CWEID)	
-		VALUES
-			(#threatactThreatID#, 
-			#threatactASID#,
-			#threatactMGoal#,
-			#threatactActDescription#,
-			#threatactCAPEC#,
-			#threatactCVE#,
-			#threatactCWE#)	
-	</insert>
-	
+
 </sqlMap>

@@ -84,9 +84,11 @@
 	
 	<resultMap class="currentcm" id="currentcmResult">
 		<result property="currentcmNumSeq" column="CURRENTCM_NUMSEQ"/>
+		<result property="currentcmID" column="CURRENTCM_ID"/>
 		<result property="currentcmCMID" column="CURRENTCM_CMID"/>
 		<result property="currentcmUserID" column="CURRENTCM_USERID"/>
 		<result property="currentcmImplcmID" column="CURRENTCM_IMPLCMID"/>
+		<result property="currentcmImplcmName" column="CURRENTCM_IMPLCMNAME"/>
 	</resultMap>
 	
 	<resultMap class="domainas" id="domainasResult">
@@ -347,12 +349,16 @@
 	<insert id="InsertCurrentCMInformation" parameterClass="RequestParameter">
 		INSERT INTO	TBL_DO_CURRENTCM
 			(CURRENTCM_CMID,
+			CURRENTCM_ID,
 			CURRENTCM_USERID,
-			CURRENTCM_IMPLCMID)	
+			CURRENTCM_IMPLCMID,
+			CURRENTCM_IMPLCMNAME)	
 		VALUES
 			(#currentcmCMID#,
+			#currentcmID#,
 			#currentcmUserID#,
-			#currentcmImplcmID#)	
+			#currentcmImplcmID#,
+			#currentcmImplcmName#)	
 	</insert>
 	
 	<select id="selectCAPECID" parameterClass="RequestParameter" resultMap="capecResult">

@@ -84,6 +84,87 @@ public class RiskDaoImpl extends BaseDao implements Dao {
 	public List<Currentcm> getCurrentcmListByRA(Object obj) throws SQLException {
 		return (List<Currentcm>)getSqlMapClientTemplate().queryForList("com.ajou.nise.security.risk.getCurrentcmListByRA", obj);
 	} 
+	public List<Cmsgoal> getCmsgoalList(Object obj) throws SQLException {
+		return (List<Cmsgoal>)getSqlMapClientTemplate().queryForList("com.ajou.nise.security.risk.getCmsgoalListByASID", obj);
+	} 
+	
+	
+	
+	
+	public Object getSecurityReqInfo(Object obj) throws SQLException {
+		return getSqlMapClientTemplate().queryForObject("com.ajou.nise.security.risk.getSecurityReqInfoBySRID", obj);
+	}
+	public List<Relatedsr> getRelatedSecurityReqInfo(Object obj) throws SQLException {
+		return (List<Relatedsr>)getSqlMapClientTemplate().queryForList("com.ajou.nise.security.risk.getRelatedSecurityReqInfoBySRID", obj);
+	} 
+	public Object getCountermeasureInfo(Object obj) throws SQLException {
+		return getSqlMapClientTemplate().queryForObject("com.ajou.nise.security.risk.getCountermeasureInfoByCMID", obj);
+	}
+	public List<Implcm> getImplCountermeasureInfo(Object obj) throws SQLException {
+		return (List<Implcm>)getSqlMapClientTemplate().queryForList("com.ajou.nise.security.risk.getImplCountermeasureInfoByCMID", obj);
+	} 
+	public Object getAssetInfo(Object obj) throws SQLException {
+		return getSqlMapClientTemplate().queryForObject("com.ajou.nise.security.risk.getAssetInfoByASID", obj);
+	}
+	public Object getDomainasInfo(Object obj) throws SQLException {
+		return getSqlMapClientTemplate().queryForObject("com.ajou.nise.security.risk.getDomainasInfoByDomainasID", obj);
+	}
+	public List<Domainasrelatedsh> getRelatedStakeholderInfo(Object obj) throws SQLException {
+		return (List<Domainasrelatedsh>)getSqlMapClientTemplate().queryForList("com.ajou.nise.security.risk.getRelatedStakeholderInfoByDomainasID", obj);
+	}
+	public Object getRelatedSHInfo(Object obj) throws SQLException {
+		return getSqlMapClientTemplate().queryForObject("com.ajou.nise.security.risk.getRelatedSHInfoBySHID", obj);
+	}
+	public Object getThreatInfo(Object obj) throws SQLException {
+		return getSqlMapClientTemplate().queryForObject("com.ajou.nise.security.risk.getThreatInfoByThreatID", obj);
+	}
+	public Object getThreatactInfo(Object obj) throws SQLException {
+		return getSqlMapClientTemplate().queryForObject("com.ajou.nise.security.risk.getThreatactInfoByThreatID", obj);
+	}
+	public Object getCAPECInfo(Object obj) throws SQLException {
+		return getSqlMapClientTemplate().queryForObject("com.ajou.nise.security.risk.getCAPECInfoByCAPECID", obj);
+	}
+	public Object getCWEInfo(Object obj) throws SQLException {
+		return getSqlMapClientTemplate().queryForObject("com.ajou.nise.security.risk.getCWEInfoByCWEID", obj);
+	}
+	public Object getCVEInfo(Object obj) throws SQLException {
+		return getSqlMapClientTemplate().queryForObject("com.ajou.nise.security.risk.getCVEInfoByCVEID", obj);
+	}
+	public List<Srrec> getBusinessOrganizationRecInfo(Object obj) throws SQLException {
+		return (List<Srrec>)getSqlMapClientTemplate().queryForList("com.ajou.nise.security.risk.getBusinessOrganizationRecInfoBySRID", obj);
+	} 
+	public List<Srrec> getBusinessRegulationRecInfo(Object obj) throws SQLException {
+		return (List<Srrec>)getSqlMapClientTemplate().queryForList("com.ajou.nise.security.risk.getBusinessRegulationRecInfoBySRID", obj);
+	} 
+	public List<Srrec> getBusinessFundRecInfo(Object obj) throws SQLException {
+		return (List<Srrec>)getSqlMapClientTemplate().queryForList("com.ajou.nise.security.risk.getBusinessFundRecInfoBySRID", obj);
+	} 
+	public List<Srrec> getBusinessTimeRecInfo(Object obj) throws SQLException {
+		return (List<Srrec>)getSqlMapClientTemplate().queryForList("com.ajou.nise.security.risk.getBusinessTimeRecInfoBySRID", obj);
+	} 
+	public List<Srrec> getBusinessBestPracticeRecInfo(Object obj) throws SQLException {
+		return (List<Srrec>)getSqlMapClientTemplate().queryForList("com.ajou.nise.security.risk.getBusinessBestPracticeRecInfoBySRID", obj);
+	} 
+	public List<Srrec> getBusinessLegalComplianceRecInfo(Object obj) throws SQLException {
+		return (List<Srrec>)getSqlMapClientTemplate().queryForList("com.ajou.nise.security.risk.getBusinessLegalComplianceRecInfoBySRID", obj);
+	} 
+	public List<Srrec> getSystemServiceRecInfo(Object obj) throws SQLException {
+		return (List<Srrec>)getSqlMapClientTemplate().queryForList("com.ajou.nise.security.risk.getSystemServiceRecInfoBySRID", obj);
+	} 
+	public List<Srrec> getSystemPlatformRecInfo(Object obj) throws SQLException {
+		return (List<Srrec>)getSqlMapClientTemplate().queryForList("com.ajou.nise.security.risk.getSystemPlatformRecInfoBySRID", obj);
+	} 
+	public List<Srrec> getTechnicalSecMechanismRecInfo(Object obj) throws SQLException {
+		return (List<Srrec>)getSqlMapClientTemplate().queryForList("com.ajou.nise.security.risk.getTechnicalSecMechanismRecInfoBySRID", obj);
+	} 
+	public List<Srrec> getTechnicalTrendRecInfo(Object obj) throws SQLException {
+		return (List<Srrec>)getSqlMapClientTemplate().queryForList("com.ajou.nise.security.risk.getTechnicalTrendRecInfoBySRID", obj);
+	} 
+	
+	
+	
+
+
 
 
 }

@@ -1,5 +1,6 @@
 package com.ajou.nise.security.risk;
 
+import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -8,6 +9,16 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.ajou.nise.security.common.RequestParameter;
+import com.hp.hpl.jena.query.Query;
+import com.hp.hpl.jena.query.QueryExecution;
+import com.hp.hpl.jena.query.QueryExecutionFactory;
+import com.hp.hpl.jena.query.QueryFactory;
+import com.hp.hpl.jena.query.QuerySolution;
+import com.hp.hpl.jena.query.ResultSet;
+import com.hp.hpl.jena.rdf.model.Model;
+import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.hp.hpl.jena.rdf.model.RDFNode;
+import com.hp.hpl.jena.util.FileManager;
 import com.ajou.nise.security.arcinfo.ArcinfoDaoImpl;
 
 
@@ -94,6 +105,83 @@ public class RiskServiceImpl implements com.ajou.nise.security.common.Service {
 	}
 	public List getCurrentcmListByRA(Object obj) throws SQLException {
 		return dao.getCurrentcmListByRA(obj);
+	}
+	public List getCmsgoalList(Object obj) throws SQLException {
+		return dao.getCmsgoalList(obj);
+	}
+	public Object getSecurityReqInfo(Object obj) throws SQLException {
+		return this.dao.getSecurityReqInfo(obj);
+	}
+	public List getRelatedSecurityReqInfo(Object obj) throws SQLException {
+		return dao.getRelatedSecurityReqInfo(obj);
+	}
+	
+	
+	
+	
+	
+	public Object getCountermeasureInfo(Object obj) throws SQLException {
+		return this.dao.getCountermeasureInfo(obj);
+	}
+	public List getImplCountermeasureInfo(Object obj) throws SQLException {
+		return dao.getImplCountermeasureInfo(obj);
+	}
+	public Object getAssetInfo(Object obj) throws SQLException {
+		return this.dao.getAssetInfo(obj);
+	}
+	public Object getDomainasInfo(Object obj) throws SQLException {
+		return this.dao.getDomainasInfo(obj);
+	}
+	public Object getRelatedSHInfo(Object obj) throws SQLException {
+		return this.dao.getRelatedSHInfo(obj);
+	}
+	public List getRelatedStakeholderInfo(Object obj) throws SQLException {
+		return dao.getRelatedStakeholderInfo(obj);
+	}
+	public Object getThreatInfo(Object obj) throws SQLException {
+		return this.dao.getThreatInfo(obj);
+	}
+	public Object getThreatactInfo(Object obj) throws SQLException {
+		return this.dao.getThreatactInfo(obj);
+	}
+	public Object getCAPECInfo(Object obj) throws SQLException {
+		return this.dao.getCAPECInfo(obj);
+	}
+	public Object getCWEInfo(Object obj) throws SQLException {
+		return this.dao.getCWEInfo(obj);
+	}
+	public Object getCVEInfo(Object obj) throws SQLException {
+		return this.dao.getCVEInfo(obj);
+	}
+	public List getBusinessOrganizationRecInfo(Object obj) throws SQLException {
+		return dao.getBusinessOrganizationRecInfo(obj);
+	}
+	public List getBusinessRegulationRecInfo(Object obj) throws SQLException {
+		return dao.getBusinessRegulationRecInfo(obj);
+	}
+	public List getBusinessFundRecInfo(Object obj) throws SQLException {
+		return dao.getBusinessFundRecInfo(obj);
+	}
+	public List getBusinessTimeRecInfo(Object obj) throws SQLException {
+		return dao.getBusinessTimeRecInfo(obj);
+	}
+	public List getBusinessBestPracticeRecInfo(Object obj) throws SQLException {
+		return dao.getBusinessBestPracticeRecInfo(obj);
+	}
+	public List getBusinessLegalComplianceRecInfo(Object obj) throws SQLException {
+		return dao.getBusinessLegalComplianceRecInfo(obj);
+	}
+	public List getSystemServiceRecInfo(Object obj) throws SQLException {
+		return dao.getSystemServiceRecInfo(obj);
+	}
+	public List getSystemPlatformRecInfo(Object obj) throws SQLException {
+		return dao.getSystemPlatformRecInfo(obj);
+	}
+	public List getTechnicalSecMechanismRecInfo(Object obj) throws SQLException {
+		return dao.getTechnicalSecMechanismRecInfo(obj);
+	}
+	public List getTechnicalTrendRecInfo(Object obj) throws SQLException {
+		return dao.getTechnicalTrendRecInfo(obj);
 	}
 
 }

@@ -11,6 +11,10 @@
 	<typeAlias alias="platform" type="com.ajou.nise.security.model.Platform"/>
 	<typeAlias alias="asset" type="com.ajou.nise.security.model.Asset"/>
 	<typeAlias alias="cm" type="com.ajou.nise.security.model.CM"/>
+	<typeAlias alias="sr" type="com.ajou.nise.security.model.SR"/>
+	<typeAlias alias="relatedsr" type="com.ajou.nise.security.model.Relatedsr"/>
+	<typeAlias alias="srrec" type="com.ajou.nise.security.model.Srrec"/>
+	<typeAlias alias="cmsgoal" type="com.ajou.nise.security.model.Cmsgoal"/>
 	<typeAlias alias="currentcm" type="com.ajou.nise.security.model.Currentcm"/>
 	<typeAlias alias="implcm" type="com.ajou.nise.security.model.Implcm"/>
 	<typeAlias alias="domainas" type="com.ajou.nise.security.model.Domainas"/>
@@ -67,11 +71,40 @@
 		<result property="assetDescription" column="AS_DESCRIPTION"/>
 	</resultMap>
 	
+	<resultMap class="sr" id="srResult">
+		<result property="srNumSeq" column="SR_NUMSEQ"/>
+		<result property="srID" column="SR_ID"/>
+		<result property="srName" column="SR_NAME"/>
+		<result property="srDescription" column="SR_DESCRIPTION"/>
+	</resultMap>
+	
+	<resultMap class="srrec" id="srrecResult">
+		<result property="srrecNumSeq" column="SRREC_NUMSEQ"/>
+		<result property="srrecID" column="SRREC_ID"/>
+		<result property="srrecRelatedsr" column="SRREC_RELATEDSR"/>
+		<result property="srrecDescription" column="SRREC_DESCRIPTION"/>
+	</resultMap>
+	
+	<resultMap class="relatedsr" id="relatedsrResult">
+		<result property="relatedsrNumSeq" column="RELATEDSR_NUMSEQ"/>
+		<result property="relatedsrSRID" column="RELATEDSR_SRID"/>
+		<result property="relatedsrRelationship" column="RELATEDSR_RELATIONSHIP"/>
+		<result property="relatedsrRelatedSRID" column="RELATEDSR_RELATEDSRID"/>
+	</resultMap>	
+	
 	<resultMap class="cm" id="cmResult">
 		<result property="cmNumSeq" column="CM_NUMSEQ"/>
 		<result property="cmID" column="CM_ID"/>
 		<result property="cmName" column="CM_NAME"/>
 		<result property="cmDescription" column="CM_DESCRIPTION"/>
+	</resultMap>
+	
+	<resultMap class="cmsgoal" id="cmsgoalResult">
+		<result property="cmsgoalNumSeq" column="CMSGOAL_NUMSEQ"/>
+		<result property="cmsgoalCMID" column="CMSGOAL_CMID"/>
+		<result property="cmsgoalCMName" column="CMSGOAL_CMNAME"/>
+		<result property="cmsgoalCMSGoal" column="CMSGOAL_CMSGOAL"/>
+		<result property="cmsgoalASID" column="CMSGOAL_ASID"/>
 	</resultMap>
 	
 	<resultMap class="implcm" id="implcmResult">
@@ -291,5 +324,208 @@
 			CURRENTCM_ID LIKE #currentcmID# AND 
 			CURRENTCM_CMID LIKE #currentcmCMIDRA# 
 	</select>
+	
+	<select id="getCmsgoalListByASID" parameterClass="java.util.Map" resultMap="cmsgoalResult">
+		SELECT
+			*
+		FROM
+			TBL_PO_CMSGOAL
+		WHERE
+			CMSGOAL_ASID = #cmsgoalASID# AND 
+			CMSGOAL_CMSGOAL = #cmsgoalSgoal# 
+	</select>
 
+
+
+
+
+
+	<select id="getSecurityReqInfoBySRID" parameterClass="java.util.Map" resultMap="srResult">
+		SELECT
+			*
+		FROM
+			TBL_PO_SR
+		WHERE
+			SR_ID = #SRID# 
+	</select>
+	
+	<select id="getRelatedSecurityReqInfoBySRID" parameterClass="java.util.Map" resultMap="relatedsrResult">
+		SELECT
+			*
+		FROM
+			TBL_PO_RELATEDSR
+		WHERE
+			RELATEDSR_SRID = #SRID# 
+	</select>
+	
+	<select id="getCountermeasureInfoByCMID" parameterClass="java.util.Map" resultMap="cmResult">
+		SELECT
+			*
+		FROM
+			TBL_PO_CM
+		WHERE
+			CM_ID = #CMID# 
+	</select>
+
+	<select id="getImplCountermeasureInfoByCMID" parameterClass="java.util.Map" resultMap="implcmResult">
+		SELECT
+			*
+		FROM
+			TBL_PO_IMPLCM
+		WHERE
+			IMPLCM_ID LIKE #implcmID# 
+	</select>
+	<select id="getAssetInfoByASID" parameterClass="java.util.Map" resultMap="assetResult">
+		SELECT
+			*
+		FROM
+			TBL_PO_AS
+		WHERE
+			AS_ID = #ASID# 
+	</select>
+	<select id="getDomainasInfoByDomainasID" parameterClass="java.util.Map" resultMap="domainasResult">
+		SELECT
+			*
+		FROM
+			TBL_DO_DOMAINAS
+		WHERE
+			DOMAINAS_ID = #domainasID# 
+	</select>
+	<select id="getRelatedStakeholderInfoByDomainasID" parameterClass="java.util.Map" resultMap="domainasrelatedshResult">
+		SELECT
+			*
+		FROM
+			TBL_DO_DOMAINASRELATEDSH
+		WHERE
+			DOMAINASRELATEDSH_DOMAINASID = #domainasID# 
+	</select>
+	<select id="getRelatedSHInfoBySHID" parameterClass="java.util.Map" resultMap="relatedshResult">
+		SELECT
+			*
+		FROM
+			TBL_DO_RELATEDSH
+		WHERE
+			RELATEDSH_ID = #SHID# 
+	</select>
+	<select id="getThreatInfoByThreatID" parameterClass="java.util.Map" resultMap="threatResult">
+		SELECT
+			*
+		FROM
+			TBL_DO_THREAT
+		WHERE
+			THREAT_ID = #threatID# 
+	</select>
+	<select id="getThreatactInfoByThreatID" parameterClass="java.util.Map" resultMap="threatactResult">
+		SELECT
+			*
+		FROM
+			TBL_DO_THREATACT
+		WHERE
+			THREATACT_THREATID = #threatID# AND THREATACT_CAPECID = #CAPECID# AND THREATACT_ASID = #ASID#  
+	</select>
+	<select id="getCAPECInfoByCAPECID" parameterClass="java.util.Map" resultMap="capecResult">
+		SELECT
+			*
+		FROM
+			TBL_PO_CAPEC
+		WHERE
+			CAPEC_ID = #CAPECID# 
+	</select>
+	<select id="getCWEInfoByCWEID" parameterClass="java.util.Map" resultMap="cweResult">
+		SELECT
+			*
+		FROM
+			TBL_PO_CWE
+		WHERE
+			CWE_ID = #CWEID# 
+	</select>
+	<select id="getCVEInfoByCVEID" parameterClass="java.util.Map" resultMap="cveResult">
+		SELECT
+			*
+		FROM
+			TBL_PO_CVE
+		WHERE
+			CVE_ID = #CVEID# 
+	</select>
+	<select id="getBusinessOrganizationRecInfoBySRID" parameterClass="java.util.Map" resultMap="srrecResult">
+		SELECT
+			*
+		FROM
+			TBL_PO_SRREC
+		WHERE
+			SRREC_ID LIKE #SrrecID# AND SRREC_ID LIKE #CMrecID# AND SRREC_ID LIKE '%_B_OR%'  
+	</select>
+	<select id="getBusinessRegulationRecInfoBySRID" parameterClass="java.util.Map" resultMap="srrecResult">
+		SELECT
+			*
+		FROM
+			TBL_PO_SRREC
+		WHERE
+			SRREC_ID LIKE #SrrecID# AND SRREC_ID LIKE #CMrecID# AND SRREC_ID LIKE '%_B_RP%'
+	</select>
+	<select id="getBusinessFundRecInfoBySRID" parameterClass="java.util.Map" resultMap="srrecResult">
+		SELECT
+			*
+		FROM
+			TBL_PO_SRREC
+		WHERE
+			SRREC_ID LIKE #SrrecID# AND SRREC_ID LIKE #CMrecID# AND SRREC_ID LIKE '%_B_RF%' 
+	</select>
+	<select id="getBusinessTimeRecInfoBySRID" parameterClass="java.util.Map" resultMap="srrecResult">
+		SELECT
+			*
+		FROM
+			TBL_PO_SRREC
+		WHERE
+			SRREC_ID LIKE #SrrecID# AND SRREC_ID LIKE #CMrecID# AND SRREC_ID LIKE '%_B_TI%'
+	</select>
+	<select id="getBusinessBestPracticeRecInfoBySRID" parameterClass="java.util.Map" resultMap="srrecResult">
+		SELECT
+			*
+		FROM
+			TBL_PO_SRREC
+		WHERE
+			SRREC_ID LIKE #SrrecID# AND SRREC_ID LIKE #CMrecID# AND SRREC_ID LIKE '%_B_BP%'
+	</select>
+	<select id="getBusinessLegalComplianceRecInfoBySRID" parameterClass="java.util.Map" resultMap="srrecResult">
+		SELECT
+			*
+		FROM
+			TBL_PO_SRREC
+		WHERE
+			SRREC_ID LIKE #SrrecID# AND SRREC_ID LIKE #CMrecID# AND SRREC_ID LIKE '%_B_LC%' 
+	</select>
+	<select id="getSystemServiceRecInfoBySRID" parameterClass="java.util.Map" resultMap="srrecResult">
+		SELECT
+			*
+		FROM
+			TBL_PO_SRREC
+		WHERE
+			SRREC_ID LIKE #SrrecID# AND SRREC_ID LIKE #CMrecID# AND SRREC_ID LIKE '%_S_SE%'
+	</select>
+	<select id="getSystemPlatformRecInfoBySRID" parameterClass="java.util.Map" resultMap="srrecResult">
+		SELECT
+			*
+		FROM
+			TBL_PO_SRREC
+		WHERE
+			SRREC_ID LIKE #SrrecID# AND SRREC_ID LIKE #CMrecID# AND SRREC_ID LIKE '%_S_PL%'
+	</select>
+	<select id="getTechnicalSecMechanismRecInfoBySRID" parameterClass="java.util.Map" resultMap="srrecResult">
+		SELECT
+			*
+		FROM
+			TBL_PO_SRREC
+		WHERE
+			SRREC_ID LIKE #SrrecID# AND SRREC_ID LIKE #CMrecID# AND SRREC_ID LIKE '%_T_SM%'
+	</select>
+	<select id="getTechnicalTrendRecInfoBySRID" parameterClass="java.util.Map" resultMap="srrecResult">
+		SELECT
+			*
+		FROM
+			TBL_PO_SRREC
+		WHERE
+			SRREC_ID LIKE #SrrecID# AND SRREC_ID LIKE #CMrecID# AND SRREC_ID LIKE '%_T_TT%'
+	</select>
+	
 </sqlMap>

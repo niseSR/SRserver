@@ -4,6 +4,7 @@ public class Cmsgoal {
 
 	private int cmsgoalNumSeq;
 	private String cmsgoalCMID;
+	private String cmsgoalCMName;
 	private String cmsgoalCMSGoal;
 	private String cmsgoalASID;
 	
@@ -31,6 +32,12 @@ public class Cmsgoal {
 	}
 	public void setCmsgoalASID(String cmsgoalASID) {
 		this.cmsgoalASID = cmsgoalASID;
+	}
+	public String getCmsgoalCMName() {
+		return cmsgoalCMName;
+	}
+	public void setCmsgoalCMName(String cmsgoalCMName) {
+		this.cmsgoalCMName = cmsgoalCMName;
 	}
 
 

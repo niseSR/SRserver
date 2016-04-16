@@ -15,9 +15,16 @@
 		<result property="userName" column="USER_NAME"/>
 		<result property="userCompany" column="USER_COMPANY"/>
 		<result property="userRegdate" column="USER_REGDATE"/>
+<<<<<<< HEAD
 		<!--  <result property="userShcount" column="USER_SHCOUNT"/> -->
 		<!--  <result property="userAscount" column="USER_ASCOUNT"/> -->
  		
+=======
+		<result property="userShcount" column="USER_SHCOUNT"/>
+		<result property="userAscount" column="USER_ASCOUNT"/>
+		<result property="userThreatcount" column="USER_THREATCOUNT"/>
+		
+>>>>>>> 1b63f3adf84e2263cf38a391394b9433d7843703
 	</resultMap>
 	
 	<resultMap class="user" id="userIDResult">

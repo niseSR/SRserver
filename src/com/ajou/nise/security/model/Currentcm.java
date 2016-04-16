@@ -3,9 +3,11 @@ package com.ajou.nise.security.model;
 public class Currentcm {
 
 	private int currentcmNumSeq;
+	private String currentcmID;
 	private String currentcmCMID;
 	private String currentcmUserID;
 	private String currentcmImplcmID;
+	private String currentcmImplcmName;
 	
 	
 	public int getCurrentcmNumSeq() {
@@ -31,6 +33,19 @@ public class Currentcm {
 	}
 	public void setCurrentcmImplcmID(String currentcmImplcmID) {
 		this.currentcmImplcmID = currentcmImplcmID;
+	}
+	
+	public String getCurrentcmID() {
+		return currentcmID;
+	}
+	public void setCurrentcmID(String currentcmID) {
+		this.currentcmID = currentcmID;
+	}
+	public String getCurrentcmImplcmName() {
+		return currentcmImplcmName;
+	}
+	public void setCurrentcmImplcmName(String currentcmImplcmName) {
+		this.currentcmImplcmName = currentcmImplcmName;
 	}
 
 	

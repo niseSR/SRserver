@@ -50,12 +50,20 @@ public class ArcinfoDaoImpl extends BaseDao implements Dao {
 		return  getSqlMapClientTemplate().queryForObject("com.ajou.nise.security.arcinfo.getUserASCount", obj);
 	}
 	
+	public Object getUserThreatCnt(Object obj) throws SQLException {
+		return  getSqlMapClientTemplate().queryForObject("com.ajou.nise.security.arcinfo.getUserThreatCount", obj);
+	}
+	
 	public void insertStakeholderInfo(Object obj) throws SQLException {
 		getSqlMapClientTemplate().insert("com.ajou.nise.security.arcinfo.InsertStakeholderInformation", obj);
 	}
 	
 	public void updateUserSHCnt(Object obj) throws SQLException {
 		getSqlMapClientTemplate().update("com.ajou.nise.security.arcinfo.updateUserSHCnt", obj);
+	}
+	
+	public void updateUserThreatCnt(Object obj) throws SQLException {
+		getSqlMapClientTemplate().update("com.ajou.nise.security.arcinfo.updateUserThreatCnt", obj);
 	}
 	
 	public Object checkUniquePlatformInfo(Object obj) throws SQLException {
@@ -81,6 +89,9 @@ public class ArcinfoDaoImpl extends BaseDao implements Dao {
 	public void updateUserASCnt(Object obj) throws SQLException {
 		getSqlMapClientTemplate().update("com.ajou.nise.security.arcinfo.updateUserASCnt", obj);
 	}
+	public void insertThreatInfo(Object obj) throws SQLException {
+		getSqlMapClientTemplate().insert("com.ajou.nise.security.arcinfo.InsertThreatInformation", obj);
+	}
 	
 	public void insertDomainasplInfo(Object obj) throws SQLException {
 		getSqlMapClientTemplate().insert("com.ajou.nise.security.arcinfo.InsertDomainasPlatformInformation", obj);
@@ -99,5 +110,23 @@ public class ArcinfoDaoImpl extends BaseDao implements Dao {
 	
 	public void insertCurrentCMInfo(Object obj) throws SQLException {
 		getSqlMapClientTemplate().insert("com.ajou.nise.security.arcinfo.InsertCurrentCMInformation", obj);
+	}
+	
+	public Object selectCAPECID(Object obj) throws SQLException {
+		return getSqlMapClientTemplate().queryForObject("com.ajou.nise.security.arcinfo.selectCAPECID", obj);
+	}
+	
+	public Object selectCVEID(Object obj) throws SQLException {
+		return getSqlMapClientTemplate().queryForObject("com.ajou.nise.security.arcinfo.selectCVEID", obj);
+	}
+	
+	public Object selectCWEID(Object obj) throws SQLException {
+		return getSqlMapClientTemplate().queryForObject("com.ajou.nise.security.arcinfo.selectCWEID", obj);
+	}
+	public void insertThreatplInfo(Object obj) throws SQLException {
+		getSqlMapClientTemplate().insert("com.ajou.nise.security.arcinfo.InsertThreatPlatformInformation", obj);
+	}
+	public void insertThreatactInfo(Object obj) throws SQLException {
+		getSqlMapClientTemplate().insert("com.ajou.nise.security.arcinfo.InsertThreatactInformation", obj);
 	}
 }

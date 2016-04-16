@@ -102,6 +102,11 @@ public class ArcinfoServiceImpl implements com.ajou.nise.security.common.Service
 		dao.updateUserASCnt(obj);
 		return true;
 	}
+	public boolean updateUserThreatCnt(Object obj) throws SQLException {
+		// TODO Auto-generated method stub
+		dao.updateUserThreatCnt(obj);
+		return true;
+	}
 	
 	public int insertDomainasplInfo(Object obj) throws SQLException {
 		this.dao.insertDomainasplInfo(obj);
@@ -127,4 +132,35 @@ public class ArcinfoServiceImpl implements com.ajou.nise.security.common.Service
 		this.dao.insertCurrentCMInfo(obj);
 		return 1;
 	}
+	
+	public Object selectCAPECID(Object obj) throws SQLException {
+		return this.dao.selectCAPECID(obj);
+	}
+	
+	public Object selectCVEID(Object obj) throws SQLException {
+		return this.dao.selectCVEID(obj);
+	}
+
+	public Object selectCWEID(Object obj) throws SQLException {
+		return this.dao.selectCWEID(obj);
+	}
+	
+	public Object getUserThreatCnt(Object obj) throws SQLException {
+		return this.dao.getUserThreatCnt(obj);
+	}
+	public int insertThreatInfo(Object obj) throws SQLException {
+		this.dao.insertThreatInfo(obj);
+		return 1;
+	}
+	public int insertThreatplInfo(Object obj) throws SQLException {
+		this.dao.insertThreatplInfo(obj);
+		return 1;
+	}
+	public int insertThreatactInfo(Object obj) throws SQLException {
+		this.dao.insertThreatactInfo(obj);
+		return 1;
+	}
+	
+	
+	
 }

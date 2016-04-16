@@ -16,6 +16,12 @@
 	<typeAlias alias="domainas" type="com.ajou.nise.security.model.Domainas"/>
 	<typeAlias alias="domainaspl" type="com.ajou.nise.security.model.Domainaspl"/>
 	<typeAlias alias="domainasrelatedsh" type="com.ajou.nise.security.model.Domainasrelatedsh"/>
+	<typeAlias alias="capec" type="com.ajou.nise.security.model.CAPEC"/>
+	<typeAlias alias="cve" type="com.ajou.nise.security.model.CVE"/>
+	<typeAlias alias="cwe" type="com.ajou.nise.security.model.CWE"/>
+	<typeAlias alias="threat" type="com.ajou.nise.security.model.Threat"/>
+	<typeAlias alias="threatact" type="com.ajou.nise.security.model.Threatact"/>
+	<typeAlias alias="threatpl" type="com.ajou.nise.security.model.Threatpl"/>
 	
 	<resultMap class="user" id="userResult">
 		<result property="userNumSeq" column="USER_NUMSEQ"/>
@@ -26,6 +32,7 @@
 		<result property="userRegdate" column="USER_REGDATE"/>
 		<result property="userShcount" column="USER_SHCOUNT"/>
 		<result property="userAscount" column="USER_ASCOUNT"/>
+		<result property="userThreatcount" column="USER_THREATCOUNT"/>
 	</resultMap>
 
 	<resultMap class="relatedsh" id="relatedshResult">
@@ -77,9 +84,11 @@
 	
 	<resultMap class="currentcm" id="currentcmResult">
 		<result property="currentcmNumSeq" column="CURRENTCM_NUMSEQ"/>
+		<result property="currentcmID" column="CURRENTCM_ID"/>
 		<result property="currentcmCMID" column="CURRENTCM_CMID"/>
 		<result property="currentcmUserID" column="CURRENTCM_USERID"/>
 		<result property="currentcmImplcmID" column="CURRENTCM_IMPLCMID"/>
+		<result property="currentcmImplcmName" column="CURRENTCM_IMPLCMNAME"/>
 	</resultMap>
 	
 	<resultMap class="domainas" id="domainasResult">
@@ -106,6 +115,57 @@
 		<result property="domainasrelatedshRelatedshID" column="DOMAINASRELATEDSH_RELATEDSHID"/>
 	</resultMap>
 	
+	<resultMap class="capec" id="capecResult">
+		<result property="capecNumSeq" column="CAPEC_NUMSEQ"/>
+		<result property="capecID" column="CAPEC_ID"/>
+		<result property="capecName" column="CAPEC_NAME"/>
+		<result property="capecDescription" column="CAPEC_DESCRIPTION"/>
+		<result property="capecPrerequisites" column="CAPEC_PREREQUISITES"/>
+	</resultMap>
+	
+	<resultMap class="cve" id="cveResult">
+		<result property="cveNumSeq" column="CVE_NUMSEQ"/>
+		<result property="cveID" column="CVE_ID"/>
+		<result property="cveName" column="CVE_NAME"/>
+		<result property="cveDescription" column="CVE_DESCRIPTION"/>
+	</resultMap>
+	
+	<resultMap class="cwe" id="cweResult">
+		<result property="cweNumSeq" column="CWE_NUMSEQ"/>
+		<result property="cweID" column="CWE_ID"/>
+		<result property="cweName" column="CWE_NAME"/>
+		<result property="cweDescription" column="CWE_DESCRIPTION"/>
+		<result property="cweRelatedCAPEC" column="CWE_RELATEDCAPEC"/>
+		<result property="cweRelatedCWE" column="CWE_RELATEDCWE"/>
+	</resultMap>
+	
+	<resultMap class="threat" id="threatResult">
+		<result property="threatNumSeq" column="THREAT_NUMSEQ"/>
+		<result property="threatID" column="THREAT_ID"/>
+		<result property="threatName" column="THREAT_NAME"/>
+		<result property="threatDescription" column="THREAT_DESCRIPTION"/>
+	</resultMap>
+
+	<resultMap class="threatpl" id="threatplResult">
+		<result property="threatplNumSeq" column="THREATPL_NUMSEQ"/>
+		<result property="threatplThreatID" column="THREATPL_THREATID"/>
+		<result property="threatplPlatformID" column="THREATPL_PLATFORMID"/>
+	</resultMap>
+	
+	<resultMap class="threatact" id="threatactResult">
+		<result property="threatactNumSeq" column="THREATACT_NUMSEQ"/>
+		<result property="threatactThreatID" column="THREATACT_THREATID"/>
+		<result property="threatactASID" column="THREATACT_ASID"/>
+		<result property="threatactMGoal" column="THREATACT_MGOAL"/>
+		<result property="threatactActDescription" column="THREATACT_ACTDESCRIPTION"/>
+		<result property="threatactCAPECID" column="THREATACT_CAPECID"/>
+		<result property="threatactCVEID" column="THREATACT_CVEID"/>
+		<result property="threatactCWEID" column="THREATACT_CWEID"/>
+		
+	</resultMap>
+	
+	
+	
 	<select id="getUserSHCount" parameterClass="RequestParameter" resultMap="userResult">
 		SELECT
 			*
@@ -122,6 +182,15 @@
 		WHERE
 			USER_ID = #domainasUserID#
 	</select>
+	<select id="getUserThreatCount" parameterClass="RequestParameter" resultMap="userResult">
+		SELECT
+			*
+		FROM
+			TBL_USER
+		WHERE
+			USER_ID = #threatUserID#
+	</select>
+	
 	<insert id="InsertStakeholderInformation" parameterClass="relatedsh">
 		INSERT INTO	TBL_DO_RELATEDSH
 			(RELATEDSH_ID, 
@@ -145,6 +214,16 @@
 			USER_ID = #userID#
 
 	</update>
+	<update id="updateUserThreatCnt" parameterClass="user">
+		UPDATE TBL_USER
+		SET
+			USER_THREATCOUNT = #userThreatcount#
+			
+		WHERE 
+			USER_ID = #userID#
+
+	</update>
+	
 	<select id="checkPlatformInfo" parameterClass="platform" resultMap="platformResult">
 		SELECT
 			*
@@ -270,22 +349,82 @@
 	<insert id="InsertCurrentCMInformation" parameterClass="RequestParameter">
 		INSERT INTO	TBL_DO_CURRENTCM
 			(CURRENTCM_CMID,
+			CURRENTCM_ID,
 			CURRENTCM_USERID,
-			CURRENTCM_IMPLCMID)	
+			CURRENTCM_IMPLCMID,
+			CURRENTCM_IMPLCMNAME)	
 		VALUES
 			(#currentcmCMID#,
+			#currentcmID#,
 			#currentcmUserID#,
-			#currentcmImplcmID#)	
+			#currentcmImplcmID#,
+			#currentcmImplcmName#)	
 	</insert>
+	
+	<select id="selectCAPECID" parameterClass="RequestParameter" resultMap="capecResult">
+		SELECT 
+			* 
+		FROM 
+			TBL_PO_CAPEC 
+		WHERE 
+			CAPEC_ID = #capecID#
+	</select>
+	
+	<select id="selectCVEID" parameterClass="RequestParameter" resultMap="cveResult">
+		SELECT 
+			* 
+		FROM 
+			TBL_PO_CVE 
+		WHERE 
+			CVE_ID = #cveID#
+	</select>
+	
+	<select id="selectCWEID" parameterClass="RequestParameter" resultMap="cweResult">
+		SELECT 
+			* 
+		FROM 
+			TBL_PO_CWE 
+		WHERE 
+			CWE_ID = #cweID#
+	</select>
+	
+	<insert id="InsertThreatInformation" parameterClass="threat">
+		INSERT INTO	TBL_DO_THREAT
+			(THREAT_ID, 
+			THREAT_NAME, 
+			THREAT_DESCRIPTION)	
+		VALUES
+			(#threatID#, 
+			#threatName#, 
+			#threatDescription#)	
+	</insert>
+	
+	<insert id="InsertThreatPlatformInformation" parameterClass="java.util.Map">
+		INSERT INTO	TBL_DO_THREATPL
+			(THREATPL_THREATID, 
+			THREATPL_PLATFORMID)	
+		VALUES
+			(#threatplThreatID#, 
+			#threatplPlatformID#)	
+	</insert>
+	
+	<insert id="InsertThreatactInformation" parameterClass="RequestParameter">
+		INSERT INTO	TBL_DO_THREATACT
+			(THREATACT_THREATID, 
+			THREATACT_ASID,
+			THREATACT_MGOAL,
+			THREATACT_ACTDESCRIPTION,
+			THREATACT_CAPECID,
+			THREATACT_CVEID,
+			THREATACT_CWEID)	
+		VALUES
+			(#threatactThreatID#, 
+			#threatactASID#,
+			#threatactMGoal#,
+			#threatactActDescription#,
+			#threatactCAPEC#,
+			#threatactCVE#,
+			#threatactCWE#)	
+	</insert>
+	
 </sqlMap>
-
-
-
-
-
-
-
-
-
-
-

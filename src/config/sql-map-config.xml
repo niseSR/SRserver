@@ -11,6 +11,7 @@
 	
 	<sqlMap resource="sqlmap/User.xml" />
 	<sqlMap resource="sqlmap/Arcinfo.xml" />
+	<sqlMap resource="sqlmap/Risk.xml" />
 
 	<!-- 
 	<sqlMap resource="sqlmap/ZipCode.xml" />

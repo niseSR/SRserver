@@ -15,9 +15,9 @@
 		<result property="userName" column="USER_NAME"/>
 		<result property="userCompany" column="USER_COMPANY"/>
 		<result property="userRegdate" column="USER_REGDATE"/>
-		<result property="userShcount" column="USER_SHCOUNT"/>
-		<result property="userAscount" column="USER_ASCOUNT"/>
-		
+		<!--  <result property="userShcount" column="USER_SHCOUNT"/> -->
+		<!--  <result property="userAscount" column="USER_ASCOUNT"/> -->
+ 		
 	</resultMap>
 	
 	<resultMap class="user" id="userIDResult">

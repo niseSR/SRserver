@@ -130,7 +130,7 @@ public class RiskController {
 		for (int i=0; i<domainasList.size() ; i++){
 			for(int j=0 ; j<threatactList.size() ; j++){
 				Risktemplate risktemplate = new Risktemplate();
-				String tmp = rp.get("asID").toString().replace("AS_", "C_");
+				String tmp = rp.get("asID").toString().replace("AS_", "CM_");
 				param.put("currentcmID", "%" + rp.get("domainCompany").toString());
 				param.put("currentcmCMIDMC", tmp + "_MC%");
 				param.put("currentcmCMIDPC", tmp + "_PC%");
@@ -488,9 +488,11 @@ public class RiskController {
 		result.put("rsrtRFAttackVectorID", capec.getCapecID().toString());
 		result.put("rsrtRFAttackVectorContent", capec.getCapecName().toString());
 		
-		if (rp.get("CVEID") != null){
+		if (cve != null){
+		
 			result.put("rsrtRFVulnerabilityID", cve.getCveID().toString());
 			result.put("rsrtRFVulnerabilityContent", cve.getCveName().toString());
+		
 		}
 		if (rp.get("CWEID") != null){
 			result.put("rsrtRFWeaknessID", cwe.getCweID().toString());

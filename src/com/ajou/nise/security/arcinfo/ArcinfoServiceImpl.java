@@ -86,7 +86,16 @@ public class ArcinfoServiceImpl implements com.ajou.nise.security.common.Service
 	public List getRelatedSHList(Object obj) throws SQLException {
 		// TODO Auto-generated method stub
 		return dao.getRelatedSHList(obj);
-	}	
+	}
+	public List getRelatedsh(Object obj) throws SQLException {
+		return dao.getRelatedsh(obj);
+	}
+	public List getDomainasList(Object obj) throws SQLException {
+		return dao.getDomainasList(obj);
+	}
+	public List getCurrentcmList(Object obj) throws SQLException {
+		return dao.getCurrentcmList(obj);
+	}
 
 	public Object getUserAScnt(Object obj) throws SQLException {
 		return this.dao.getUserAScnt(obj);
@@ -122,6 +131,7 @@ public class ArcinfoServiceImpl implements com.ajou.nise.security.common.Service
 		// TODO Auto-generated method stub
 		return dao.getCMList(obj);
 	}	
+	
 	
 	public List getImplCMList(Object obj) throws SQLException {
 		// TODO Auto-generated method stub

@@ -344,7 +344,7 @@ public class RiskController {
 		
 		// 1-1 : owl 파일 불러오는 로직		
 		Model model = ModelFactory.createDefaultModel();
-		InputStream in = FileManager.get().open("E:/workingontology/test1st.owl");
+		InputStream in = FileManager.get().open("C:/workingontology/test1st.owl");
 		model.read(in, null);
 		
 		// 1-2 : statement 생성

@@ -82,6 +82,18 @@ public class ArcinfoDaoImpl extends BaseDao implements Dao {
 		return (List<Asset>)getSqlMapClientTemplate().queryForList("com.ajou.nise.security.arcinfo.selectRelatedSHList", obj);
 	} 
 	
+	public List<Relatedsh> getRelatedsh(Object obj) throws SQLException {
+		return (List<Relatedsh>)getSqlMapClientTemplate().queryForList("com.ajou.nise.security.arcinfo.selectRelatedsh", obj);
+	}
+	
+	public List<Domainas> getDomainasList(Object obj) throws SQLException {
+		return (List<Domainas>)getSqlMapClientTemplate().queryForList("com.ajou.nise.security.arcinfo.selectDomainasList", obj);
+	}
+	
+	public List<Currentcm> getCurrentcmList(Object obj) throws SQLException {
+		return (List<Currentcm>)getSqlMapClientTemplate().queryForList("com.ajou.nise.security.arcinfo.selectCurrentcmList", obj);
+	}
+	
 	public void insertDomainasInfo(Object obj) throws SQLException {
 		getSqlMapClientTemplate().insert("com.ajou.nise.security.arcinfo.InsertDomainasInformation", obj);
 	}

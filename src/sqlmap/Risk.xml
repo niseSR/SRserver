@@ -281,7 +281,7 @@
 		FROM
 			TBL_DO_CURRENTCM
 		WHERE
-			CURRENTCM_ID LIKE #currentcmID# AND 
+			CURRENTCM_ID LIKE #current`cmID# AND 
 			CURRENTCM_CMID LIKE #currentcmCMIDPI# 
 	</select>
 	

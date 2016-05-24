@@ -65,7 +65,8 @@ public class Domainas {
 	}
 	public void setDomainasSGoalA(String domainasSGoalA) {
 		this.domainasSGoalA = domainasSGoalA;
-	}	
+	}
+
 	
 
 	

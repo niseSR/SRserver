@@ -90,6 +90,14 @@ public class ArcinfoDaoImpl extends BaseDao implements Dao {
 		return (List<Domainas>)getSqlMapClientTemplate().queryForList("com.ajou.nise.security.arcinfo.selectDomainasList", obj);
 	}
 	
+	public List<Domainaspl> getDomainasplList(Object obj) throws SQLException {
+		return (List<Domainaspl>)getSqlMapClientTemplate().queryForList("com.ajou.nise.security.arcinfo.selectDomainasplList", obj);
+	}
+	
+	public List<Domainasrelatedsh> getDomainasrelatedshList(Object obj) throws SQLException {
+		return (List<Domainasrelatedsh>)getSqlMapClientTemplate().queryForList("com.ajou.nise.security.arcinfo.selectDomainasrelatedshList", obj);
+	}
+	
 	public List<Currentcm> getCurrentcmList(Object obj) throws SQLException {
 		return (List<Currentcm>)getSqlMapClientTemplate().queryForList("com.ajou.nise.security.arcinfo.selectCurrentcmList", obj);
 	}

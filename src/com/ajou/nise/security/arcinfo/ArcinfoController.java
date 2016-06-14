@@ -660,20 +660,66 @@ public class ArcinfoController {
 		RequestParameter rp = Utils.extractRequestParameters(req);
 		ModelAndView mnv = new ModelAndView("/common/json_result");
 		Map<String, Object> map = new HashMap<String, Object>();
+		Map<String, Object> param = new HashMap<String, Object>();
 
 		System.out.println("------------Domainas------------");
 		System.out.println("rp = " + rp);
 
 		ArrayList<Domainas> domainasList = (ArrayList<Domainas>) this.arcinfoService.getDomainasList(rp);
+		
+		ArrayList<Companyassettemplate> templateList = new ArrayList<Companyassettemplate>();
+		
+		
+		
+		for(int i=0; i<domainasList.size(); i++){
+			Companyassettemplate template = new Companyassettemplate();
+			String domainasID = "";
+			domainasID = domainasList.get(i).getDomainasID();
+			param.put("domainasplID", domainasID);
+			ArrayList<Domainaspl> domainasplList = (ArrayList<Domainaspl>) this.arcinfoService.getDomainasplList(param);
+			String platformID = "";
+			for(int j=0; j<domainasplList.size(); j++){
+				if(j != domainasplList.size()-1){
+					platformID += domainasplList.get(j).getDomainasplPlatformID() + "\n";
+				}
+				else{
+					platformID += domainasplList.get(j).getDomainasplPlatformID();
+				}
+				
+			}
+			String relatedSH = "";
+			ArrayList<Domainasrelatedsh> domainasrelatedshList = (ArrayList<Domainasrelatedsh>) this.arcinfoService.getDomainasrelatedshList(param);
+			for(int k=0; k<domainasrelatedshList.size(); k++){
+				if(k != domainasrelatedshList.size()-1){
+					relatedSH += domainasrelatedshList.get(k).getDomainasrelatedshRelatedshID() + "\n";
+				}
+				else{
+					relatedSH += domainasrelatedshList.get(k).getDomainasrelatedshRelatedshID();
+				}
+			}
+			
+			
+			template.setCompanyAssetPlatform(platformID);
+			template.setCompanyAssetRelatedStakeholder(relatedSH);
+			
+			template.setCompanyAssetName(domainasList.get(i).getDomainasName());
+			template.setCompanyAssetType(domainasList.get(i).getDomainasID());
+			template.setCompanyAssetCriticality(domainasList.get(i).getDomainasCriticality());
+			template.setCompanyAssetSGOALC(domainasList.get(i).getDomainasSGoalC());
+			template.setCompanyAssetSGOALI(domainasList.get(i).getDomainasSGoalI());
+			template.setCompanyAssetSGOALA(domainasList.get(i).getDomainasSGoalA());
+			
+			System.out.println("company asset name : " + template.getCompanyAssetName());
+			System.out.println("company asset type : " + template.getCompanyAssetType());
+			System.out.println("company asset platform : " + template.getCompanyAssetPlatform());
+			
+			templateList.add(template);
+			
+		}
 
-		
-		
-		
-		
-		
-		if (domainasList != null) {
+		if (templateList != null) {
 			System.out.println("Success to bring the data!");
-			map.put("success", domainasList);
+			map.put("success", templateList);
 		} else {
 			System.out.println("Fail to the registration");
 			map.put("fail", "가져오기 실패했습니다.");
@@ -684,9 +730,11 @@ public class ArcinfoController {
 		return mnv;
 	}
 
+
 	// architectureInfo Company Operating Countermeasure
 	@RequestMapping("/arcinfo/CompanyOperatingCountermeasure.do")
-	public ModelAndView companyOperatingCountermeasure(HttpServletRequest req, HttpServletResponse res) throws Exception {
+	public ModelAndView companyOperatingCountermeasure(HttpServletRequest req, HttpServletResponse res)
+			throws Exception {
 		RequestParameter rp = Utils.extractRequestParameters(req);
 		ModelAndView mnv = new ModelAndView("/common/json_result");
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -696,11 +744,6 @@ public class ArcinfoController {
 
 		ArrayList<Currentcm> currentcmList = (ArrayList<Currentcm>) this.arcinfoService.getCurrentcmList(rp);
 
-		
-		
-		
-				
-				
 		if (currentcmList != null) {
 			System.out.println("Success to bring the data!");
 			map.put("success", currentcmList);

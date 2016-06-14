@@ -93,6 +93,12 @@ public class ArcinfoServiceImpl implements com.ajou.nise.security.common.Service
 	public List getDomainasList(Object obj) throws SQLException {
 		return dao.getDomainasList(obj);
 	}
+	public List getDomainasplList(Object obj) throws SQLException {
+		return dao.getDomainasplList(obj);
+	}
+	public List getDomainasrelatedshList(Object obj) throws SQLException {
+		return dao.getDomainasrelatedshList(obj);
+	}
 	public List getCurrentcmList(Object obj) throws SQLException {
 		return dao.getCurrentcmList(obj);
 	}

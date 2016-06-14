@@ -338,7 +338,25 @@
 		WHERE 
 			DOMAINAS_USERID = #domainasUserID#
 	</select>
+
+
+	<select id="selectDomainasplList" parameterClass="java.util.Map" resultMap="domainasplResult">
+		SELECT 
+			* 
+		FROM 
+			TBL_DO_DOMAINASPL 
+		WHERE 
+			DOMAINASPL_DOMAINASID LIKE #domainasplID#
+	</select>	
 	
+	<select id="selectDomainasrelatedshList" parameterClass="java.util.Map" resultMap="domainasrelatedshResult">
+		SELECT 
+			* 
+		FROM 
+			TBL_DO_DOMAINASRELATEDSH 
+		WHERE 
+			DOMAINASRELATEDSH_DOMAINASID LIKE #domainasplID#
+	</select>	
 	
 	<update id="updateUserASCnt" parameterClass="user">
 		UPDATE TBL_USER

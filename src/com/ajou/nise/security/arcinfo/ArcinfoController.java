@@ -359,6 +359,43 @@ public class ArcinfoController {
 	}
 
 	// countermeasure 종류를 자동으로 분류에 맞춰서 가져오기 위한 로직
+	@RequestMapping("/arcinfo/select_DomainAssetName.do")
+	public ModelAndView select_DomainAssetName(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		RequestParameter rp = Utils.extractRequestParameters(req);
+		ModelAndView mnv = new ModelAndView("/common/json_result");
+		Map<String, Object> map = new HashMap<String, Object>();
+		Map<String, String> param = new HashMap<String, String>();
+
+		System.out.println("-------------select_DomainAssetName--------------");
+		System.out.println("rp = " + rp);
+
+		// SQL 쿼리문의 조건문을 만들기 위해 param이라는 Hash Map을 활용하여 쿼리 조건문 완성
+		param.put("domainasID", rp.get("domainasID").toString() + "%");
+
+		ArrayList<Domainas> DomainasList = (ArrayList<Domainas>) this.arcinfoService.getDomainasListbyID(param);
+		System.out.println(DomainasList);
+
+		if (DomainasList != null) {
+			System.out.println("Success to the registration");
+			map.put("success", DomainasList);
+
+		} else {
+			System.out.println("Fail to the registration");
+			map.put("fail", "가져오기 실패했습니다..");
+		}
+		mnv.addObject("map", map);
+		mnv.addObject("callback", req.getParameter("callback"));
+
+		return mnv;
+	}
+	
+	
+	
+	
+	
+	
+	
+	// countermeasure 종류를 자동으로 분류에 맞춰서 가져오기 위한 로직
 	@RequestMapping("/arcinfo/select_CountermeasureType.do")
 	public ModelAndView select_CountermeasureType(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		RequestParameter rp = Utils.extractRequestParameters(req);
@@ -630,13 +667,13 @@ public class ArcinfoController {
 	}
 
 	// architectureInfo Company Stakeholder
-	@RequestMapping("/arcinfo/CompanyStakeholder.do")
+	@RequestMapping("/arcinfo/bring_CompanyStakeholder.do")
 	public ModelAndView companyStakeholder(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		RequestParameter rp = Utils.extractRequestParameters(req);
 		ModelAndView mnv = new ModelAndView("/common/json_result");
 		Map<String, Object> map = new HashMap<String, Object>();
 
-		System.out.println("------------Relatedsh------------");
+		System.out.println("------------bring_CompanyStakeholder------------");
 		System.out.println("rp = " + rp);
 
 		ArrayList<Relatedsh> relatedSHList = (ArrayList<Relatedsh>) this.arcinfoService.getRelatedSHList(rp);
@@ -645,7 +682,7 @@ public class ArcinfoController {
 			System.out.println("Success to bring the data!");
 			map.put("success", relatedSHList);
 		} else {
-			System.out.println("Fail to the registration");
+			System.out.println("Fail to bring the data");
 			map.put("fail", "가져오기 실패했습니다.");
 		}
 		mnv.addObject("map", map);
@@ -655,14 +692,14 @@ public class ArcinfoController {
 	}
 
 	// architectureInfo Company Asset
-	@RequestMapping("/arcinfo/CompanyAsset.do")
+	@RequestMapping("/arcinfo/bring_CompanyAsset.do")
 	public ModelAndView companyAsset(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		RequestParameter rp = Utils.extractRequestParameters(req);
 		ModelAndView mnv = new ModelAndView("/common/json_result");
 		Map<String, Object> map = new HashMap<String, Object>();
 		Map<String, Object> param = new HashMap<String, Object>();
 
-		System.out.println("------------Domainas------------");
+		System.out.println("------------bring_CompanyAsset------------");
 		System.out.println("rp = " + rp);
 
 		ArrayList<Domainas> domainasList = (ArrayList<Domainas>) this.arcinfoService.getDomainasList(rp);
@@ -680,21 +717,24 @@ public class ArcinfoController {
 			String platformID = "";
 			for(int j=0; j<domainasplList.size(); j++){
 				if(j != domainasplList.size()-1){
-					platformID += domainasplList.get(j).getDomainasplPlatformID() + "\n";
+					platformID += "○ "+domainasplList.get(j).getDomainasplPlatformID() + "<p></p>";
 				}
 				else{
-					platformID += domainasplList.get(j).getDomainasplPlatformID();
+					platformID += "○ "+domainasplList.get(j).getDomainasplPlatformID();
 				}
 				
 			}
 			String relatedSH = "";
 			ArrayList<Domainasrelatedsh> domainasrelatedshList = (ArrayList<Domainasrelatedsh>) this.arcinfoService.getDomainasrelatedshList(param);
 			for(int k=0; k<domainasrelatedshList.size(); k++){
+				Map<String, Object> param1 = new HashMap<String, Object>();
+				param1.put("relatedshID", domainasrelatedshList.get(k).getDomainasrelatedshRelatedshID());
+				Relatedsh relatedsh = (Relatedsh) this.arcinfoService.getSHNamebyID(param1);
 				if(k != domainasrelatedshList.size()-1){
-					relatedSH += domainasrelatedshList.get(k).getDomainasrelatedshRelatedshID() + "\n";
+					relatedSH += "○ "+relatedsh.getRelatedshName()+ "<p></p>";
 				}
 				else{
-					relatedSH += domainasrelatedshList.get(k).getDomainasrelatedshRelatedshID();
+					relatedSH += "○ "+relatedsh.getRelatedshName();
 				}
 			}
 			
@@ -739,7 +779,7 @@ public class ArcinfoController {
 		ModelAndView mnv = new ModelAndView("/common/json_result");
 		Map<String, Object> map = new HashMap<String, Object>();
 
-		System.out.println("------------Currentcm------------");
+		System.out.println("------------CompanyOperatingCountermeasure------------");
 		System.out.println("rp = " + rp);
 
 		ArrayList<Currentcm> currentcmList = (ArrayList<Currentcm>) this.arcinfoService.getCurrentcmList(rp);
@@ -756,5 +796,31 @@ public class ArcinfoController {
 
 		return mnv;
 	}
+	
+	@RequestMapping("/arcinfo/select_CurrentCMbyDomainasID.do")
+	public ModelAndView select_CurrentCMbyDomainasID(HttpServletRequest req, HttpServletResponse res)
+			throws Exception {
+		RequestParameter rp = Utils.extractRequestParameters(req);
+		ModelAndView mnv = new ModelAndView("/common/json_result");
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		System.out.println("------------select_CurrentCMbyDomainasID------------");
+		System.out.println("rp = " + rp);
+
+		ArrayList<Currentcm> currentcmList = (ArrayList<Currentcm>) this.arcinfoService.getCurrentcmListbyDomainasID(rp);
+
+		if (currentcmList != null) {
+			System.out.println("Success to bring the data!");
+			map.put("success", currentcmList);
+		} else {
+			System.out.println("Fail to the registration");
+			map.put("fail", "가져오기 실패했습니다.");
+		}
+		mnv.addObject("map", map);
+		mnv.addObject("callback", req.getParameter("callback"));
+
+		return mnv;
+	}
+	
 
 }

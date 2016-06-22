@@ -1,0 +1,1059 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY securityOntologyTest "http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#" >
+    <!ENTITY SROnt "http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTestl#" >
+]>
+
+
+<rdf:RDF xmlns="http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#"
+     xml:base="http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest"
+     xmlns:securityOntologyTest="http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:SROnt="http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTestl#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#achieve -->
+
+    <owl:ObjectProperty rdf:about="&securityOntologyTest;achieve">
+        <rdf:type rdf:resource="&owl;SymmetricProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#apply_To -->
+
+    <owl:ObjectProperty rdf:about="&securityOntologyTest;apply_To">
+        <rdf:type rdf:resource="&owl;SymmetricProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#damage -->
+
+    <owl:ObjectProperty rdf:about="&securityOntologyTest;damage"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#driven_By -->
+
+    <owl:ObjectProperty rdf:about="&securityOntologyTest;driven_By">
+        <rdf:type rdf:resource="&owl;SymmetricProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#exploit -->
+
+    <owl:ObjectProperty rdf:about="&securityOntologyTest;exploit">
+        <rdf:type rdf:resource="&owl;SymmetricProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#have -->
+
+    <owl:ObjectProperty rdf:about="&securityOntologyTest;have">
+        <rdfs:subPropertyOf rdf:resource="&owl;topObjectProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#increase -->
+
+    <owl:ObjectProperty rdf:about="&securityOntologyTest;increase"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#lead_To -->
+
+    <owl:ObjectProperty rdf:about="&securityOntologyTest;lead_To"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#mitigate -->
+
+    <owl:ObjectProperty rdf:about="&securityOntologyTest;mitigate">
+        <rdf:type rdf:resource="&owl;SymmetricProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#prevent -->
+
+    <owl:ObjectProperty rdf:about="&securityOntologyTest;prevent">
+        <rdf:type rdf:resource="&owl;SymmetricProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#protect -->
+
+    <owl:ObjectProperty rdf:about="&securityOntologyTest;protect">
+        <rdfs:subPropertyOf rdf:resource="&owl;topObjectProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#reduce -->
+
+    <owl:ObjectProperty rdf:about="&securityOntologyTest;reduce">
+        <rdf:type rdf:resource="&owl;SymmetricProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#require -->
+
+    <owl:ObjectProperty rdf:about="&securityOntologyTest;require">
+        <rdf:type rdf:resource="&owl;SymmetricProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#suggest -->
+
+    <owl:ObjectProperty rdf:about="&securityOntologyTest;suggest">
+        <rdf:type rdf:resource="&owl;SymmetricProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#AS -->
+
+    <owl:Class rdf:about="&securityOntologyTest;AS">
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#AS_DA -->
+
+    <owl:Class rdf:about="&securityOntologyTest;AS_DA">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;AS"/>
+        <owl:disjointWith rdf:resource="&securityOntologyTest;AS_SE"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#AS_DA_1 -->
+
+    <owl:Class rdf:about="&securityOntologyTest;AS_DA_1">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;AS_DA"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#AS_DA_2 -->
+
+    <owl:Class rdf:about="&securityOntologyTest;AS_DA_2">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;AS_DA"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#AS_DA_3 -->
+
+    <owl:Class rdf:about="&securityOntologyTest;AS_DA_3">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;AS_DA"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#AS_DA_4 -->
+
+    <owl:Class rdf:about="&securityOntologyTest;AS_DA_4">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;AS_DA"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#AS_DA_5 -->
+
+    <owl:Class rdf:about="&securityOntologyTest;AS_DA_5">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;AS_DA"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#AS_SE -->
+
+    <owl:Class rdf:about="&securityOntologyTest;AS_SE">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;AS"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#AS_SE_1 -->
+
+    <owl:Class rdf:about="&securityOntologyTest;AS_SE_1">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;AS_SE"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#AS_SE_2 -->
+
+    <owl:Class rdf:about="&securityOntologyTest;AS_SE_2">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;AS_SE"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#AS_SE_3 -->
+
+    <owl:Class rdf:about="&securityOntologyTest;AS_SE_3">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;AS_SE"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#AS_SE_4 -->
+
+    <owl:Class rdf:about="&securityOntologyTest;AS_SE_4">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;AS_SE"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#AS_SE_5 -->
+
+    <owl:Class rdf:about="&securityOntologyTest;AS_SE_5">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;AS_SE"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#CAPEC -->
+
+    <owl:Class rdf:about="&securityOntologyTest;CAPEC">
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#CAPEC_268 -->
+
+    <owl:Class rdf:about="&securityOntologyTest;CAPEC_268">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;CAPEC"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#CAPEC_660 -->
+
+    <owl:Class rdf:about="&securityOntologyTest;CAPEC_660">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;CAPEC"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#CL -->
+
+    <owl:Class rdf:about="&securityOntologyTest;CL">
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#CL_DA -->
+
+    <owl:Class rdf:about="&securityOntologyTest;CL_DA">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;CL"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#CL_DA_1 -->
+
+    <owl:Class rdf:about="&securityOntologyTest;CL_DA_1">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;CL_DA"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#CL_DA_2 -->
+
+    <owl:Class rdf:about="&securityOntologyTest;CL_DA_2">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;CL_DA"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#CL_DA_3 -->
+
+    <owl:Class rdf:about="&securityOntologyTest;CL_DA_3">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;CL_DA"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#CL_DA_4 -->
+
+    <owl:Class rdf:about="&securityOntologyTest;CL_DA_4">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;CL_DA"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#CL_DA_5 -->
+
+    <owl:Class rdf:about="&securityOntologyTest;CL_DA_5">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;CL_DA"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#CL_DA_6 -->
+
+    <owl:Class rdf:about="&securityOntologyTest;CL_DA_6">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;CL_DA"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#CL_DA_7 -->
+
+    <owl:Class rdf:about="&securityOntologyTest;CL_DA_7">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;CL_DA"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#CL_DO -->
+
+    <owl:Class rdf:about="&securityOntologyTest;CL_DO">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;CL"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#CL_SE -->
+
+    <owl:Class rdf:about="&securityOntologyTest;CL_SE">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;CL"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#CM -->
+
+    <owl:Class rdf:about="&securityOntologyTest;CM">
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#CM_DA_1 -->
+
+    <owl:Class rdf:about="&securityOntologyTest;CM_DA_1">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;CM"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#CM_DA_1_MA -->
+
+    <owl:Class rdf:about="&securityOntologyTest;CM_DA_1_MA">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;CM_DA_1"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#CM_DA_1_MC -->
+
+    <owl:Class rdf:about="&securityOntologyTest;CM_DA_1_MC">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;CM_DA_1"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#CM_DA_1_MI -->
+
+    <owl:Class rdf:about="&securityOntologyTest;CM_DA_1_MI">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;CM_DA_1"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#CM_DA_1_MI_1 -->
+
+    <owl:Class rdf:about="&securityOntologyTest;CM_DA_1_MI_1">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;CM_DA_1_MI"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#CM_DA_1_MI_2 -->
+
+    <owl:Class rdf:about="&securityOntologyTest;CM_DA_1_MI_2">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;CM_DA_1_MI"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#CM_DA_1_MI_3 -->
+
+    <owl:Class rdf:about="&securityOntologyTest;CM_DA_1_MI_3">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;CM_DA_1_MI"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#CM_DA_1_MI_4 -->
+
+    <owl:Class rdf:about="&securityOntologyTest;CM_DA_1_MI_4">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;CM_DA_1_MI"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#CM_DA_1_MI_5 -->
+
+    <owl:Class rdf:about="&securityOntologyTest;CM_DA_1_MI_5">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;CM_DA_1_MI"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#CM_DA_1_PA -->
+
+    <owl:Class rdf:about="&securityOntologyTest;CM_DA_1_PA">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;CM_DA_1"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#CM_DA_1_PC -->
+
+    <owl:Class rdf:about="&securityOntologyTest;CM_DA_1_PC">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;CM_DA_1"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#CM_DA_1_PI -->
+
+    <owl:Class rdf:about="&securityOntologyTest;CM_DA_1_PI">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;CM_DA_1"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#CM_DA_1_PI_1 -->
+
+    <owl:Class rdf:about="&securityOntologyTest;CM_DA_1_PI_1">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;CM_DA_1_PI"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#CM_DA_1_RA -->
+
+    <owl:Class rdf:about="&securityOntologyTest;CM_DA_1_RA">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;CM_DA_1"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#CM_DA_1_RC -->
+
+    <owl:Class rdf:about="&securityOntologyTest;CM_DA_1_RC">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;CM_DA_1"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#CM_DA_1_RI -->
+
+    <owl:Class rdf:about="&securityOntologyTest;CM_DA_1_RI">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;CM_DA_1"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#CM_DA_1_RI_1 -->
+
+    <owl:Class rdf:about="&securityOntologyTest;CM_DA_1_RI_1">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;CM_DA_1_RI"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#CM_DA_2 -->
+
+    <owl:Class rdf:about="&securityOntologyTest;CM_DA_2">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;CM"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#CM_DA_3 -->
+
+    <owl:Class rdf:about="&securityOntologyTest;CM_DA_3">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;CM"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#CWE -->
+
+    <owl:Class rdf:about="&securityOntologyTest;CWE">
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#CWE_440 -->
+
+    <owl:Class rdf:about="&securityOntologyTest;CWE_440">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;CWE"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#SR -->
+
+    <owl:Class rdf:about="&securityOntologyTest;SR">
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#SR_1 -->
+
+    <owl:Class rdf:about="&securityOntologyTest;SR_1">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;SR"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#SR_10 -->
+
+    <owl:Class rdf:about="&securityOntologyTest;SR_10">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;SR"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#SR_11 -->
+
+    <owl:Class rdf:about="&securityOntologyTest;SR_11">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;SR"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#SR_11_1 -->
+
+    <owl:Class rdf:about="&securityOntologyTest;SR_11_1">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;SR_11"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#SR_11_2 -->
+
+    <owl:Class rdf:about="&securityOntologyTest;SR_11_2">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;SR_11"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#SR_11_3 -->
+
+    <owl:Class rdf:about="&securityOntologyTest;SR_11_3">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;SR_11"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#SR_11_4 -->
+
+    <owl:Class rdf:about="&securityOntologyTest;SR_11_4">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;SR_11"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#SR_11_5 -->
+
+    <owl:Class rdf:about="&securityOntologyTest;SR_11_5">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;SR_11"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#SR_11_6 -->
+
+    <owl:Class rdf:about="&securityOntologyTest;SR_11_6">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;SR_11"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#SR_11_6_1 -->
+
+    <owl:Class rdf:about="&securityOntologyTest;SR_11_6_1">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;SR_11_6"/>
+        <owl:disjointWith rdf:resource="&securityOntologyTest;SR_11_6_2"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#SR_11_6_2 -->
+
+    <owl:Class rdf:about="&securityOntologyTest;SR_11_6_2">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;SR_11_6"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#SR_11_6_2_1 -->
+
+    <owl:Class rdf:about="&securityOntologyTest;SR_11_6_2_1">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;SR_11_6_2"/>
+        <owl:disjointWith rdf:resource="&securityOntologyTest;SR_11_6_2_2"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#SR_11_6_2_2 -->
+
+    <owl:Class rdf:about="&securityOntologyTest;SR_11_6_2_2">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;SR_11_6_2"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#SR_11_7 -->
+
+    <owl:Class rdf:about="&securityOntologyTest;SR_11_7">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;SR_11"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#SR_11_8 -->
+
+    <owl:Class rdf:about="&securityOntologyTest;SR_11_8">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;SR_11"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#SR_11_9 -->
+
+    <owl:Class rdf:about="&securityOntologyTest;SR_11_9">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;SR_11"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#SR_12 -->
+
+    <owl:Class rdf:about="&securityOntologyTest;SR_12">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;SR"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#SR_1_1 -->
+
+    <owl:Class rdf:about="&securityOntologyTest;SR_1_1">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;SR_1"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#SR_1_1_1 -->
+
+    <owl:Class rdf:about="&securityOntologyTest;SR_1_1_1">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;SR_1_1"/>
+        <owl:disjointWith rdf:resource="&securityOntologyTest;SR_1_1_2"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#SR_1_1_2 -->
+
+    <owl:Class rdf:about="&securityOntologyTest;SR_1_1_2">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;SR_1_1"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#SR_1_2 -->
+
+    <owl:Class rdf:about="&securityOntologyTest;SR_1_2">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;SR_1"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#SR_1_3 -->
+
+    <owl:Class rdf:about="&securityOntologyTest;SR_1_3">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;SR_1"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#SR_2 -->
+
+    <owl:Class rdf:about="&securityOntologyTest;SR_2">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;SR"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#SR_3 -->
+
+    <owl:Class rdf:about="&securityOntologyTest;SR_3">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;SR"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#SR_4 -->
+
+    <owl:Class rdf:about="&securityOntologyTest;SR_4">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;SR"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#SR_5 -->
+
+    <owl:Class rdf:about="&securityOntologyTest;SR_5">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;SR"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#SR_6 -->
+
+    <owl:Class rdf:about="&securityOntologyTest;SR_6">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;SR"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#SR_7 -->
+
+    <owl:Class rdf:about="&securityOntologyTest;SR_7">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;SR"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#SR_8 -->
+
+    <owl:Class rdf:about="&securityOntologyTest;SR_8">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;SR"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#SR_9 -->
+
+    <owl:Class rdf:about="&securityOntologyTest;SR_9">
+        <rdfs:subClassOf rdf:resource="&securityOntologyTest;SR"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#AS_DA_1 -->
+
+    <owl:NamedIndividual rdf:about="&securityOntologyTest;AS_DA_1">
+        <rdf:type rdf:resource="&securityOntologyTest;AS_DA_1"/>
+        <have rdf:resource="&securityOntologyTest;CL_DA_7"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#CAPEC_268 -->
+
+    <owl:NamedIndividual rdf:about="&securityOntologyTest;CAPEC_268">
+        <rdf:type rdf:resource="&securityOntologyTest;CAPEC_268"/>
+        <damage rdf:resource="&securityOntologyTest;AS_DA_1"/>
+        <increase rdf:resource="&securityOntologyTest;CL_DA_7"/>
+        <exploit rdf:resource="&securityOntologyTest;CWE_440"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#CAPEC_660 -->
+
+    <owl:NamedIndividual rdf:about="&securityOntologyTest;CAPEC_660">
+        <rdf:type rdf:resource="&securityOntologyTest;CAPEC_660"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#CL_DA_1 -->
+
+    <owl:NamedIndividual rdf:about="&securityOntologyTest;CL_DA_1">
+        <rdf:type rdf:resource="&securityOntologyTest;CL_DA_1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#CL_DA_7 -->
+
+    <owl:NamedIndividual rdf:about="&securityOntologyTest;CL_DA_7">
+        <rdf:type rdf:resource="&securityOntologyTest;CL_DA_7"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#CM_DA_1_MI_1 -->
+
+    <owl:NamedIndividual rdf:about="&securityOntologyTest;CM_DA_1_MI_1">
+        <rdf:type rdf:resource="&securityOntologyTest;CM_DA_1_MI_1"/>
+        <reduce rdf:resource="&securityOntologyTest;CL_DA_7"/>
+        <mitigate rdf:resource="&securityOntologyTest;CWE_440"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#CM_DA_1_PI_1 -->
+
+    <owl:NamedIndividual rdf:about="&securityOntologyTest;CM_DA_1_PI_1">
+        <rdf:type rdf:resource="&securityOntologyTest;CM_DA_1_PI_1"/>
+        <reduce rdf:resource="&securityOntologyTest;CL_DA_7"/>
+        <mitigate rdf:resource="&securityOntologyTest;CWE_440"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#CM_DA_1_RI_1 -->
+
+    <owl:NamedIndividual rdf:about="&securityOntologyTest;CM_DA_1_RI_1">
+        <rdf:type rdf:resource="&securityOntologyTest;CM_DA_1_RI_1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#CWE_440 -->
+
+    <owl:NamedIndividual rdf:about="&securityOntologyTest;CWE_440">
+        <rdf:type rdf:resource="&securityOntologyTest;CWE_440"/>
+        <driven_By rdf:resource="&securityOntologyTest;CAPEC_268"/>
+        <driven_By rdf:resource="&securityOntologyTest;CAPEC_660"/>
+        <lead_To rdf:resource="&securityOntologyTest;CL_DA_7"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#SR_11_6_2 -->
+
+    <owl:NamedIndividual rdf:about="&securityOntologyTest;SR_11_6_2">
+        <rdf:type rdf:resource="&securityOntologyTest;SR_11_6_2"/>
+        <apply_To rdf:resource="&securityOntologyTest;AS_DA_1"/>
+        <driven_By rdf:resource="&securityOntologyTest;CAPEC_268"/>
+        <suggest rdf:resource="&securityOntologyTest;CM_DA_1_PI_1"/>
+        <prevent rdf:resource="&securityOntologyTest;CWE_440"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#SR_1_1_1 -->
+
+    <owl:NamedIndividual rdf:about="&securityOntologyTest;SR_1_1_1">
+        <rdf:type rdf:resource="&securityOntologyTest;SR_1_1_1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/ajou/ontologies/2016/1/securityOntologyTest#SR_1_1_2 -->
+
+    <owl:NamedIndividual rdf:about="&securityOntologyTest;SR_1_1_2">
+        <rdf:type rdf:resource="&securityOntologyTest;SR_1_1_2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="&securityOntologyTest;AS"/>
+            <rdf:Description rdf:about="&securityOntologyTest;CAPEC"/>
+            <rdf:Description rdf:about="&securityOntologyTest;CL"/>
+            <rdf:Description rdf:about="&securityOntologyTest;CM"/>
+            <rdf:Description rdf:about="&securityOntologyTest;CWE"/>
+            <rdf:Description rdf:about="&securityOntologyTest;SR"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="&securityOntologyTest;AS_SE_1"/>
+            <rdf:Description rdf:about="&securityOntologyTest;AS_SE_2"/>
+            <rdf:Description rdf:about="&securityOntologyTest;AS_SE_3"/>
+            <rdf:Description rdf:about="&securityOntologyTest;AS_SE_4"/>
+            <rdf:Description rdf:about="&securityOntologyTest;AS_SE_5"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="&securityOntologyTest;CM_DA_1"/>
+            <rdf:Description rdf:about="&securityOntologyTest;CM_DA_2"/>
+            <rdf:Description rdf:about="&securityOntologyTest;CM_DA_3"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="&securityOntologyTest;AS_DA_1"/>
+            <rdf:Description rdf:about="&securityOntologyTest;AS_DA_2"/>
+            <rdf:Description rdf:about="&securityOntologyTest;AS_DA_3"/>
+            <rdf:Description rdf:about="&securityOntologyTest;AS_DA_4"/>
+            <rdf:Description rdf:about="&securityOntologyTest;AS_DA_5"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="&securityOntologyTest;CM_DA_1_MI_1"/>
+            <rdf:Description rdf:about="&securityOntologyTest;CM_DA_1_MI_2"/>
+            <rdf:Description rdf:about="&securityOntologyTest;CM_DA_1_MI_3"/>
+            <rdf:Description rdf:about="&securityOntologyTest;CM_DA_1_MI_4"/>
+            <rdf:Description rdf:about="&securityOntologyTest;CM_DA_1_MI_5"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="&securityOntologyTest;SR_11_1"/>
+            <rdf:Description rdf:about="&securityOntologyTest;SR_11_2"/>
+            <rdf:Description rdf:about="&securityOntologyTest;SR_11_3"/>
+            <rdf:Description rdf:about="&securityOntologyTest;SR_11_4"/>
+            <rdf:Description rdf:about="&securityOntologyTest;SR_11_5"/>
+            <rdf:Description rdf:about="&securityOntologyTest;SR_11_6"/>
+            <rdf:Description rdf:about="&securityOntologyTest;SR_11_7"/>
+            <rdf:Description rdf:about="&securityOntologyTest;SR_11_8"/>
+            <rdf:Description rdf:about="&securityOntologyTest;SR_11_9"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="&securityOntologyTest;CM_DA_1_MA"/>
+            <rdf:Description rdf:about="&securityOntologyTest;CM_DA_1_MC"/>
+            <rdf:Description rdf:about="&securityOntologyTest;CM_DA_1_MI"/>
+            <rdf:Description rdf:about="&securityOntologyTest;CM_DA_1_PA"/>
+            <rdf:Description rdf:about="&securityOntologyTest;CM_DA_1_PC"/>
+            <rdf:Description rdf:about="&securityOntologyTest;CM_DA_1_PI"/>
+            <rdf:Description rdf:about="&securityOntologyTest;CM_DA_1_RA"/>
+            <rdf:Description rdf:about="&securityOntologyTest;CM_DA_1_RC"/>
+            <rdf:Description rdf:about="&securityOntologyTest;CM_DA_1_RI"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="&securityOntologyTest;CL_DA"/>
+            <rdf:Description rdf:about="&securityOntologyTest;CL_DO"/>
+            <rdf:Description rdf:about="&securityOntologyTest;CL_SE"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="&securityOntologyTest;SR_1"/>
+            <rdf:Description rdf:about="&securityOntologyTest;SR_2"/>
+            <rdf:Description rdf:about="&securityOntologyTest;SR_3"/>
+            <rdf:Description rdf:about="&securityOntologyTest;SR_4"/>
+            <rdf:Description rdf:about="&securityOntologyTest;SR_5"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="&securityOntologyTest;SR_1_1"/>
+            <rdf:Description rdf:about="&securityOntologyTest;SR_1_2"/>
+            <rdf:Description rdf:about="&securityOntologyTest;SR_1_3"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="&securityOntologyTest;CL_DA_1"/>
+            <rdf:Description rdf:about="&securityOntologyTest;CL_DA_2"/>
+            <rdf:Description rdf:about="&securityOntologyTest;CL_DA_3"/>
+            <rdf:Description rdf:about="&securityOntologyTest;CL_DA_4"/>
+            <rdf:Description rdf:about="&securityOntologyTest;CL_DA_5"/>
+            <rdf:Description rdf:about="&securityOntologyTest;CL_DA_6"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="&securityOntologyTest;SR_10"/>
+            <rdf:Description rdf:about="&securityOntologyTest;SR_11"/>
+            <rdf:Description rdf:about="&securityOntologyTest;SR_12"/>
+            <rdf:Description rdf:about="&securityOntologyTest;SR_6"/>
+            <rdf:Description rdf:about="&securityOntologyTest;SR_7"/>
+            <rdf:Description rdf:about="&securityOntologyTest;SR_8"/>
+            <rdf:Description rdf:about="&securityOntologyTest;SR_9"/>
+        </owl:members>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net -->
+

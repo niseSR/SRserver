@@ -122,6 +122,8 @@
 		<result property="currentcmUserID" column="CURRENTCM_USERID"/>
 		<result property="currentcmImplcmID" column="CURRENTCM_IMPLCMID"/>
 		<result property="currentcmImplcmName" column="CURRENTCM_IMPLCMNAME"/>
+		<result property="currentcmDomainasID" column="CURRENTCM_DOMAINASID"/>
+		<result property="currentcmDomainasName" column="CURRENTCM_DOMAINASNAME"/>
 	</resultMap>
 	
 	<resultMap class="domainas" id="domainasResult">
@@ -211,10 +213,11 @@
 		FROM
 			TBL_DO_THREAT
 		WHERE
-			THREAT_NAME = #threatName1# OR 
+			(THREAT_NAME = #threatName1# OR 
 			THREAT_NAME LIKE #threatName2# OR 
 			THREAT_NAME LIKE #threatName3# OR 
-			THREAT_NAME LIKE #threatName4# 
+			THREAT_NAME LIKE #threatName4#) AND
+			(THREAT_ID LIKE #threatID#) 
 	</select>
 	
 	<select id="selectThreatactListByID" parameterClass="RequestParameter" resultMap="threatactResult">
@@ -281,7 +284,7 @@
 		FROM
 			TBL_DO_CURRENTCM
 		WHERE
-			CURRENTCM_ID LIKE #current`cmID# AND 
+			CURRENTCM_ID LIKE #currentcmID# AND 
 			CURRENTCM_CMID LIKE #currentcmCMIDPI# 
 	</select>
 	
@@ -526,6 +529,24 @@
 			TBL_PO_SRREC
 		WHERE
 			SRREC_ID LIKE #SrrecID# AND SRREC_ID LIKE #CMrecID# AND SRREC_ID LIKE '%_T_TT%'
+	</select>
+	
+	<select id="getDomainasplID" parameterClass="RequestParameter" resultMap="domainasplResult">
+		SELECT
+			*
+		FROM
+			TBL_DO_DOMAINASPL
+		WHERE
+			DOMAINASPL_DOMAINASID = #domainasID# 
+	</select>
+	
+	<select id="getThreatplID" parameterClass="RequestParameter" resultMap="threatplResult">
+		SELECT
+			*
+		FROM
+			TBL_DO_THREATPL
+		WHERE
+			THREATPL_THREATID = #threatID# 
 	</select>
 	
 </sqlMap>

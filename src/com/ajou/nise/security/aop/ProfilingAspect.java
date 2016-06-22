@@ -70,33 +70,5 @@ public class ProfilingAspect {
 		
 	}
 
-	
-	/*
-	@AfterReturning(pointcut = "profileTarget()", returning="ret")
-	public void trace(JoinPoint joinPoint, HashMap ret) throws Throwable{
-		String signatureString = joinPoint.getSignature().toShortString();
-		System.out.println(signatureString + "시작");
-		long start = System.currentTimeMillis();
-		
-		ret.put("aaa", "bbb");
-		
-		
-
-	}
-	*/
-	
-	/*
-	@Before("profileTarget()")
-	public Object beforeTrace(ProceedingJoinPoint joinPoint) throws Throwable{
-		String signatureString = joinPoint.getSignature().toShortString();
-		System.out.println(signatureString + "test!!!!!!!!!!!!!!!!!!!!!");
-		try{
-			Object result = joinPoint.proceed();
-			return result;
-		}finally{
-			long finish = System.currentTimeMillis();
-		}
-	}
-	*/
 
 }

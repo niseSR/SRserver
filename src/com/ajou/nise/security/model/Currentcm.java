@@ -8,6 +8,8 @@ public class Currentcm {
 	private String currentcmUserID;
 	private String currentcmImplcmID;
 	private String currentcmImplcmName;
+	private String currentcmDomainasID;
+	private String currentcmDomainasName;
 	
 	
 	public int getCurrentcmNumSeq() {
@@ -46,6 +48,18 @@ public class Currentcm {
 	}
 	public void setCurrentcmImplcmName(String currentcmImplcmName) {
 		this.currentcmImplcmName = currentcmImplcmName;
+	}
+	public String getCurrentcmDomainasID() {
+		return currentcmDomainasID;
+	}
+	public void setCurrentcmDomainasID(String currentcmDomainasID) {
+		this.currentcmDomainasID = currentcmDomainasID;
+	}
+	public String getCurrentcmDomainasName() {
+		return currentcmDomainasName;
+	}
+	public void setCurrentcmDomainasName(String currentcmDomainasName) {
+		this.currentcmDomainasName = currentcmDomainasName;
 	}
 
 	

@@ -90,6 +90,10 @@ public class ArcinfoDaoImpl extends BaseDao implements Dao {
 		return (List<Domainas>)getSqlMapClientTemplate().queryForList("com.ajou.nise.security.arcinfo.selectDomainasList", obj);
 	}
 	
+	public List<Domainas> getDomainasListbyID(Object obj) throws SQLException {
+		return (List<Domainas>)getSqlMapClientTemplate().queryForList("com.ajou.nise.security.arcinfo.selectDomainasListbyID", obj);
+	}
+	
 	public List<Domainaspl> getDomainasplList(Object obj) throws SQLException {
 		return (List<Domainaspl>)getSqlMapClientTemplate().queryForList("com.ajou.nise.security.arcinfo.selectDomainasplList", obj);
 	}
@@ -148,5 +152,13 @@ public class ArcinfoDaoImpl extends BaseDao implements Dao {
 	}
 	public void insertThreatactInfo(Object obj) throws SQLException {
 		getSqlMapClientTemplate().insert("com.ajou.nise.security.arcinfo.InsertThreatactInformation", obj);
+	}
+	
+	public Object getSHNamebyID(Object obj) throws SQLException {
+		return  getSqlMapClientTemplate().queryForObject("com.ajou.nise.security.arcinfo.selectSHNamebyID", obj);
+	}
+	
+	public List<Currentcm> getCurrentcmListbyDomainasID(Object obj) throws SQLException {
+		return (List<Currentcm>)getSqlMapClientTemplate().queryForList("com.ajou.nise.security.arcinfo.getCurrentcmListbyDomainasID", obj);
 	}
 }

@@ -93,6 +93,8 @@ public class RiskController {
 		param.put("threatName3", "%" + rp.get("threatName").toString());
 		param.put("threatName3", "%" + rp.get("threatName").toString() + "%");
 		
+		param.put("threatID", rp.get("threatID").toString() + "%");
+		
 		
 		ArrayList<Threat> threatList = (ArrayList<Threat>) this.riskService.getThreatList(param);
 		System.out.println(threatList);
@@ -112,6 +114,58 @@ public class RiskController {
 		
 		return mnv;
 	}
+	
+	
+	@RequestMapping("/risk/check_RiskExists.do")
+	public ModelAndView check_RiskExists(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		RequestParameter rp = Utils.extractRequestParameters(req);	
+		ModelAndView mnv = new ModelAndView("/common/json_result");
+		Map<String, String> param = new HashMap<String, String>();
+		Map<String, Object> map = new HashMap<String, Object>();
+		Map<String, Object> result = new HashMap<String, Object>();
+
+		System.out.println("-------------check_RiskExists--------------");
+		System.out.println("rp = " + rp);
+
+		ArrayList<Domainaspl> DomainasplList = (ArrayList<Domainaspl>) this.riskService.getDomainasplList(rp);
+		ArrayList<Threatpl> ThreatplList = (ArrayList<Threatpl>) this.riskService.getThreatplList(rp);
+		
+		int k=0;
+		for (int i=0; i<DomainasplList.size() ; i++){
+			for(int j=0 ; j<ThreatplList.size() ; j++){
+				if (DomainasplList.get(i).getDomainasplPlatformID().toString().equals(ThreatplList.get(j).getThreatplPlatformID().toString())){
+					result.put("platformID"+k, DomainasplList.get(i).getDomainasplPlatformID().toString());
+					System.out.println(result.get("platformID"+k));
+					k++;
+				}
+			}
+		}
+		
+		
+		if(result != null)
+		{
+			System.out.println("Success to bring the data!");
+			map.put("success", result);
+		
+		}else
+		{
+			System.out.println("Fail to the registration");
+			map.put("fail", "가져오기 실패했습니다..");		
+		}	
+
+		
+
+		mnv.addObject("map", map);
+		mnv.addObject("callback", req.getParameter("callback"));
+		
+		return mnv;
+	}
+
+	
+	
+	
+	
+	
 	
 	@RequestMapping("/risk/calculate_RiskFactor.do")
 	public ModelAndView calculate_RiskFactor(HttpServletRequest req, HttpServletResponse res) throws Exception {
@@ -349,7 +403,7 @@ public class RiskController {
 		
 		// 1-2 : statement 생성
 		String queryString = prefix + "SELECT ?SR WHERE { ?SR SROnt:suggest SROnt:"+ param.get("CMID").toString() +"."
-				+ "?SR SROnt:apply_To SROnt:"+ param.get("ASID").toString().replace("_BKCompany_1", "")+"."
+				+ "?SR SROnt:apply_To SROnt:"+ param.get("ASID").toString() +"."
 				+ "?SR SROnt:prevent SROnt:"+ param.get("CWEID").toString() + "."
 				+ "?SR SROnt:driven_By SROnt:"+param.get("CAPECID").toString() +"}";
 		Query query = QueryFactory.create(queryString);	

@@ -89,6 +89,8 @@
 		<result property="currentcmUserID" column="CURRENTCM_USERID"/>
 		<result property="currentcmImplcmID" column="CURRENTCM_IMPLCMID"/>
 		<result property="currentcmImplcmName" column="CURRENTCM_IMPLCMNAME"/>
+		<result property="currentcmDomainasID" column="CURRENTCM_DOMAINASID"/>
+		<result property="currentcmDomainasName" column="CURRENTCM_DOMAINASNAME"/>
 	</resultMap>
 	
 	<resultMap class="domainas" id="domainasResult">
@@ -309,6 +311,15 @@
 			CURRENTCM_USERID = #currentcmUserID#
 	</select>
 	
+	<select id="getCurrentcmListbyDomainasID" parameterClass="RequestParameter" resultMap="currentcmResult">
+		SELECT 
+			* 
+		FROM 
+			TBL_DO_CURRENTCM
+		WHERE 
+			CURRENTCM_DOMAINASID = #currentcmDomainas#
+	</select>
+	
 	<insert id="InsertDomainasInformation" parameterClass="domainas">
 		INSERT INTO	TBL_DO_DOMAINAS
 			(DOMAINAS_ID, 
@@ -338,6 +349,16 @@
 		WHERE 
 			DOMAINAS_USERID = #domainasUserID#
 	</select>
+	
+	<select id="selectDomainasListbyID" parameterClass="java.util.Map" resultMap="domainasResult">
+		SELECT 
+			* 
+		FROM 
+			TBL_DO_DOMAINAS 
+		WHERE 
+			DOMAINAS_ID LIKE #domainasID#
+	</select>
+	
 
 
 	<select id="selectDomainasplList" parameterClass="java.util.Map" resultMap="domainasplResult">
@@ -391,13 +412,17 @@
 			CURRENTCM_ID,
 			CURRENTCM_USERID,
 			CURRENTCM_IMPLCMID,
-			CURRENTCM_IMPLCMNAME)	
+			CURRENTCM_IMPLCMNAME,
+			CURRENTCM_DOMAINASID,
+			CURRENTCM_DOMAINASNAME)	
 		VALUES
 			(#currentcmCMID#,
 			#currentcmID#,
 			#currentcmUserID#,
 			#currentcmImplcmID#,
-			#currentcmImplcmName#)	
+			#currentcmImplcmName#,
+			#currentcmDomainasID#,
+			#currentcmDomainasName#)	
 	</insert>
 	
 	<select id="selectCAPECID" parameterClass="RequestParameter" resultMap="capecResult">
@@ -465,5 +490,14 @@
 			#threatactCVE#,
 			#threatactCWE#)	
 	</insert>
+	
+	<select id="selectSHNamebyID" parameterClass="java.util.Map" resultMap="relatedshResult">
+		SELECT 
+			* 
+		FROM 
+			TBL_DO_RELATEDSH
+		WHERE 
+			RELATEDSH_ID = #relatedshID#
+	</select>
 	
 </sqlMap>

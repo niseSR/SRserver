@@ -162,6 +162,15 @@ public class RiskDaoImpl extends BaseDao implements Dao {
 	} 
 	
 	
+	public List<Domainaspl> getDomainasplList(Object obj) throws SQLException {
+		return (List<Domainaspl>)getSqlMapClientTemplate().queryForList("com.ajou.nise.security.risk.getDomainasplID", obj);
+	}
+	
+	public List<Threatpl> getThreatplList(Object obj) throws SQLException {
+		return (List<Threatpl>)getSqlMapClientTemplate().queryForList("com.ajou.nise.security.risk.getThreatplID", obj);
+	} 
+	
+	
 	
 
 

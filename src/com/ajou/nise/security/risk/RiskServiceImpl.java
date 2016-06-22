@@ -184,4 +184,11 @@ public class RiskServiceImpl implements com.ajou.nise.security.common.Service {
 		return dao.getTechnicalTrendRecInfo(obj);
 	}
 
+	public List getDomainasplList(Object obj) throws SQLException {
+		return dao.getDomainasplList(obj);
+	}
+	
+	public List getThreatplList(Object obj) throws SQLException {
+		return dao.getThreatplList(obj);
+	}
 }

@@ -93,6 +93,11 @@ public class ArcinfoServiceImpl implements com.ajou.nise.security.common.Service
 	public List getDomainasList(Object obj) throws SQLException {
 		return dao.getDomainasList(obj);
 	}
+	
+	public List getDomainasListbyID(Object obj) throws SQLException {
+		return dao.getDomainasListbyID(obj);
+	}
+	
 	public List getDomainasplList(Object obj) throws SQLException {
 		return dao.getDomainasplList(obj);
 	}
@@ -175,6 +180,14 @@ public class ArcinfoServiceImpl implements com.ajou.nise.security.common.Service
 	public int insertThreatactInfo(Object obj) throws SQLException {
 		this.dao.insertThreatactInfo(obj);
 		return 1;
+	}
+	
+	public Object getSHNamebyID(Object obj) throws SQLException {
+		return this.dao.getSHNamebyID(obj);
+	}
+	
+	public List getCurrentcmListbyDomainasID(Object obj) throws SQLException {
+		return dao.getCurrentcmListbyDomainasID(obj);
 	}
 	
 	
